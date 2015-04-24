@@ -22,18 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
         
-        let tabBarController = UITabBarController();
-        let liveViewController = LiveViewController(nibName : "Live_iPhone", bundle: nil)
-        let feedListViewController = FeedListViewController(nibName : "FeedList_iPhone" , bundle : nil)
-        let viewControllers = [liveViewController,feedListViewController]
-        tabBarController.viewControllers = viewControllers;
-        
-        window?.rootViewController = tabBarController;
-        
-        liveViewController.tabBarItem = UITabBarItem(title: "Live", image: nil, selectedImage: nil)
-        feedListViewController.tabBarItem = UITabBarItem(title: "Feeds", image: nil, selectedImage: nil)
-
-        return true
     }
 
     func applicationWillResignActive(application: UIApplication) {

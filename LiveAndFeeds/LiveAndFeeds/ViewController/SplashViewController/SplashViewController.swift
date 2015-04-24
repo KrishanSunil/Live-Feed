@@ -105,6 +105,28 @@ class SplashViewController: UIViewController,NSXMLParserDelegate {
         println("Element name \(elementName)")
         println("Qualified name \(qName)")
         element = "";
+        
+        if ((elementName as NSString).isEqualToString("feedList")){
+            
+            dispatch_async(utils.GlobalMainQueue){
+                self.activityIndicator.stopAnimating()
+                let tabBarController = UITabBarController();
+                let liveViewController = LiveViewController(nibName : "Live_iPhone", bundle: nil)
+                let feedListViewController = FeedListViewController(nibName : "FeedList_iPhone" , bundle : nil)
+                let viewControllers = [liveViewController,feedListViewController]
+                tabBarController.viewControllers = viewControllers;
+                
+                self.appDelegate.window?.rootViewController = tabBarController;
+                
+                liveViewController.tabBarItem = UITabBarItem(title: "Live", image: nil, selectedImage: nil)
+                feedListViewController.tabBarItem = UITabBarItem(title: "Feeds", image: nil, selectedImage: nil)
+                
+           
+
+                
+            }
+            
+        }
     }
     
     

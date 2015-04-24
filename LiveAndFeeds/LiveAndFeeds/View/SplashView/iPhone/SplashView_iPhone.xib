@@ -4,8 +4,9 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SplashViewController" customModule="Live_and_Feed" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SplashViewController" customModule="LiveAndFeeds" customModuleProvider="target">
             <connections>
+                <outlet property="activityIndicator" destination="UyG-bZ-LiH" id="qVf-dz-v8E"/>
                 <outlet property="view" destination="CPi-dk-sdx" id="5dT-ne-D88"/>
             </connections>
         </placeholder>

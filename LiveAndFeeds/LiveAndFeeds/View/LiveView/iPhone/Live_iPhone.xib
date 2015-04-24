@@ -4,8 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LiveViewController" customModule="Live_and_Feed" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LiveViewController" customModule="LiveAndFeeds" customModuleProvider="target">
             <connections>
+                <outlet property="activityIndicator" destination="CQn-9j-hJJ" id="LkX-qz-L9D"/>
+                <outlet property="liveCollectionView" destination="bK2-go-zge" id="gOu-PS-DRF"/>
                 <outlet property="view" destination="iN0-l3-epB" id="OHv-mt-EKn"/>
             </connections>
         </placeholder>
@@ -13,7 +15,39 @@
         <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="CQn-9j-hJJ">
+                    <rect key="frame" x="282" y="281" width="37" height="37"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="37" id="0tN-Bz-IhV"/>
+                        <constraint firstAttribute="height" constant="37" id="epl-Zf-PqG"/>
+                    </constraints>
+                </activityIndicatorView>
+                <collectionView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="bK2-go-zge">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="n5s-uf-sn7">
+                        <size key="itemSize" width="50" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="eWj-Qu-m5d"/>
+                        <outlet property="delegate" destination="-1" id="ScL-5D-uO2"/>
+                    </connections>
+                </collectionView>
+            </subviews>
             <color key="backgroundColor" red="1" green="0.89018052569999995" blue="0.58182388029999998" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="bK2-go-zge" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="ADd-dN-90a"/>
+                <constraint firstAttribute="centerY" secondItem="bK2-go-zge" secondAttribute="centerY" id="BQN-5O-x5J"/>
+                <constraint firstAttribute="bottom" secondItem="bK2-go-zge" secondAttribute="bottom" id="Ilc-Ud-K87"/>
+                <constraint firstAttribute="centerY" secondItem="CQn-9j-hJJ" secondAttribute="centerY" constant="0.5" id="hfR-fx-fEG"/>
+                <constraint firstAttribute="trailing" secondItem="bK2-go-zge" secondAttribute="trailing" id="p0g-P6-Dz5"/>
+                <constraint firstAttribute="centerX" secondItem="bK2-go-zge" secondAttribute="centerX" id="psw-Dl-hGH"/>
+                <constraint firstAttribute="centerX" secondItem="CQn-9j-hJJ" secondAttribute="centerX" constant="-0.5" id="qm2-6C-sUS"/>
+                <constraint firstItem="bK2-go-zge" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="xT4-jg-jqc"/>
+            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
     </objects>

@@ -7,12 +7,56 @@
 //
 
 import UIKit
+import CoreData
 
-class LiveViewController: UIViewController {
+class LiveViewController: UIViewController, NSFetchedResultsControllerDelegate {
 
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var liveCollectionView: UICollectionView!
+    
+    
+    let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+    var _fetchedResultsController :NSFetchedResultsController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        var error:NSError?
+        if !self.fetchedResultsController.performFetch(&error){
+            println("Fetch Error : \(error?.localizedDescription)")
+            abort()
+        }
+    }
+    
+    var fetchedResultsController:NSFetchedResultsController {
+        
+        
+        if self._fetchedResultsController != nil {
+            return self._fetchedResultsController!
+        }
+        
+        let managedObjectContext = appDelegate.managedObjectContext!
+        
+        let feedEntityDescription = NSEntityDescription.entityForName("Feed", inManagedObjectContext: managedObjectContext)
+        let livePredicate = NSPredicate(format: "airingCategory == %@", "Live")
+        
+        let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
+        
+        let fetchRequest = NSFetchRequest()
+        
+        fetchRequest.entity = feedEntityDescription;
+        fetchRequest.predicate = livePredicate
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+        self._fetchedResultsController = aFetchedResultsController
+        
+       
+        
+      
+        
+        
+        return self._fetchedResultsController!
         
     }
 
