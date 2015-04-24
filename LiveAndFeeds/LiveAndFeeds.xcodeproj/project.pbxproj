@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7368A21B6BE1987D98AE03CA /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A65B00C131AC6D3C20943597 /* libPods.a */; };
+		A2491AEF1AEA4B1600595433 /* BackgroundDownload.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2491AEE1AEA4B1600595433 /* BackgroundDownload.swift */; };
 		A2A5D5C31AE782BC00E3B3BD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A5D5C21AE782BC00E3B3BD /* AppDelegate.swift */; };
 		A2A5D5C61AE782BC00E3B3BD /* LiveAndFeeds.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A2A5D5C41AE782BC00E3B3BD /* LiveAndFeeds.xcdatamodeld */; };
 		A2A5D5C81AE782BC00E3B3BD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A5D5C71AE782BC00E3B3BD /* ViewController.swift */; };
@@ -35,6 +37,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		62A0219673046F6226F9C4CF /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		A2491AEE1AEA4B1600595433 /* BackgroundDownload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundDownload.swift; sourceTree = "<group>"; };
+		A2491AF21AEA4D3D00595433 /* Objective-CBridgeHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Objective-CBridgeHeader.h"; sourceTree = "<group>"; };
 		A2A5D5BD1AE782BC00E3B3BD /* LiveAndFeeds.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiveAndFeeds.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2A5D5C11AE782BC00E3B3BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A2A5D5C21AE782BC00E3B3BD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -54,6 +59,8 @@
 		A2A5D5FF1AE7860200E3B3BD /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		A2A5D6081AE9E28900E3B3BD /* Feed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
 		A2A5D60B1AEA2E3D00E3B3BD /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		A65B00C131AC6D3C20943597 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		CCE3F1C6704D51983A7E15C8 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7368A21B6BE1987D98AE03CA /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,12 +82,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A2491AF11AEA4D3D00595433 /* ObjectiveC-BridgeHeader */ = {
+			isa = PBXGroup;
+			children = (
+				A2491AF21AEA4D3D00595433 /* Objective-CBridgeHeader.h */,
+			);
+			path = "ObjectiveC-BridgeHeader";
+			sourceTree = "<group>";
+		};
 		A2A5D5B41AE782BC00E3B3BD = {
 			isa = PBXGroup;
 			children = (
 				A2A5D5BF1AE782BC00E3B3BD /* LiveAndFeeds */,
 				A2A5D5D81AE782BC00E3B3BD /* LiveAndFeedsTests */,
 				A2A5D5BE1AE782BC00E3B3BD /* Products */,
+				A5D4834EB43C2E2597B30DF2 /* Pods */,
+				A6440A7018BAA34A5F39FDA5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -137,6 +155,7 @@
 		A2A5D5E71AE7836100E3B3BD /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				A2491AF11AEA4D3D00595433 /* ObjectiveC-BridgeHeader */,
 				A2A5D60A1AEA2E2B00E3B3BD /* Utility */,
 				A2A5D5E81AE7836100E3B3BD /* CoredataEntities */,
 			);
@@ -279,8 +298,26 @@
 			isa = PBXGroup;
 			children = (
 				A2A5D60B1AEA2E3D00E3B3BD /* Utils.swift */,
+				A2491AEE1AEA4B1600595433 /* BackgroundDownload.swift */,
 			);
 			path = Utility;
+			sourceTree = "<group>";
+		};
+		A5D4834EB43C2E2597B30DF2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CCE3F1C6704D51983A7E15C8 /* Pods.debug.xcconfig */,
+				62A0219673046F6226F9C4CF /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		A6440A7018BAA34A5F39FDA5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A65B00C131AC6D3C20943597 /* libPods.a */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -290,9 +327,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A2A5D5DF1AE782BC00E3B3BD /* Build configuration list for PBXNativeTarget "LiveAndFeeds" */;
 			buildPhases = (
+				D58E34956B9A070A6B3D4181 /* Check Pods Manifest.lock */,
 				A2A5D5B91AE782BC00E3B3BD /* Sources */,
 				A2A5D5BA1AE782BC00E3B3BD /* Frameworks */,
 				A2A5D5BB1AE782BC00E3B3BD /* Resources */,
+				FC87A3C21502F29CA60D7B90 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -381,6 +420,39 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		D58E34956B9A070A6B3D4181 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		FC87A3C21502F29CA60D7B90 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		A2A5D5B91AE782BC00E3B3BD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -391,6 +463,7 @@
 				A2A5D6091AE9E28900E3B3BD /* Feed.swift in Sources */,
 				A2A5D5C31AE782BC00E3B3BD /* AppDelegate.swift in Sources */,
 				A2A5D6041AE7860200E3B3BD /* LiveViewController.swift in Sources */,
+				A2491AEF1AEA4B1600595433 /* BackgroundDownload.swift in Sources */,
 				A2A5D6051AE7860200E3B3BD /* SplashViewController.swift in Sources */,
 				A2A5D5C61AE782BC00E3B3BD /* LiveAndFeeds.xcdatamodeld in Sources */,
 				A2A5D60C1AEA2E3D00E3B3BD /* Utils.swift in Sources */,
@@ -516,21 +589,25 @@
 		};
 		A2A5D5E01AE782BC00E3B3BD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CCE3F1C6704D51983A7E15C8 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = LiveAndFeeds/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/KrishanS/Documents/Live & Feed/iOS/Live-Feed/LiveAndFeeds/LiveAndFeeds/Models/ObjectiveC-BridgeHeader/Objective-CBridgeHeader.h";
 			};
 			name = Debug;
 		};
 		A2A5D5E11AE782BC00E3B3BD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 62A0219673046F6226F9C4CF /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = LiveAndFeeds/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/KrishanS/Documents/Live & Feed/iOS/Live-Feed/LiveAndFeeds/LiveAndFeeds/Models/ObjectiveC-BridgeHeader/Objective-CBridgeHeader.h";
 			};
 			name = Release;
 		};
@@ -587,6 +664,7 @@
 				A2A5D5E11AE782BC00E3B3BD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A2A5D5E21AE782BC00E3B3BD /* Build configuration list for PBXNativeTarget "LiveAndFeedsTests" */ = {
 			isa = XCConfigurationList;
@@ -595,6 +673,7 @@
 				A2A5D5E41AE782BC00E3B3BD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
