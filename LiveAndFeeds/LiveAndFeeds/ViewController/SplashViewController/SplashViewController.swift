@@ -20,15 +20,21 @@ class SplashViewController: UIViewController,NSXMLParserDelegate {
     var parser = NSXMLParser()
     var feeds = [NSManagedObject]()
     var element = NSString()
+    var utils = Utils()
     let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     var xmlAttributeDictionary = NSDictionary()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        beginParsingXml()
-        
-        
-        
+//        beginParsingXml()
+    }
+    
+    override func viewWillAppear(animated: Bool){
+        super.viewWillAppear(false);
+        dispatch_async(utils.GlobalUserInitiatedQueue){
+            self.beginParsingXml();
+            
+        }
         
         
     }
@@ -71,13 +77,23 @@ class SplashViewController: UIViewController,NSXMLParserDelegate {
             
             let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
             
-            let managedObjectContext = appDelegate.managedObjectContext
+            let managedObjectContext = appDelegate.managedObjectContext!
             
-            var  feedEntityDescription = NSEntityDescription.entityForName("Feed", inManagedObjectContext: managedObjectContext!)
+            var  feedEntityDescription = NSEntityDescription.entityForName("Feed", inManagedObjectContext: managedObjectContext)
             
             var feed = Feed(entity: feedEntityDescription!, insertIntoManagedObjectContext: managedObjectContext)
             
             feed.name = xmlAttributeDictionary["name"]! as String
+            feed.airingCategory = xmlAttributeDictionary["airingCategory"]! as String
+            feed.urlValue = string
+            
+            println("Url is \(string)")
+            
+            var error: NSError?
+            
+            if !managedObjectContext.save(&error){
+                println("could not save \(error), \(error?.userInfo)")
+            }
             
             
             
@@ -86,6 +102,9 @@ class SplashViewController: UIViewController,NSXMLParserDelegate {
     
     func parser(parser: NSXMLParser!, didEndElement elementName: String!, namespaceURI: String!, qualifiedName qName: String!)
     {
+        println("Element name \(elementName)")
+        println("Qualified name \(qName)")
+        element = "";
     }
     
     

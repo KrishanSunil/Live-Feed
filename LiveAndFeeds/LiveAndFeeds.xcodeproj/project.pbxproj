@@ -14,13 +14,14 @@
 		A2A5D5CD1AE782BC00E3B3BD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2A5D5CC1AE782BC00E3B3BD /* Images.xcassets */; };
 		A2A5D5D01AE782BC00E3B3BD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2A5D5CE1AE782BC00E3B3BD /* LaunchScreen.xib */; };
 		A2A5D5DC1AE782BC00E3B3BD /* LiveAndFeedsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A5D5DB1AE782BC00E3B3BD /* LiveAndFeedsTests.swift */; };
-		A2A5D5EB1AE7836100E3B3BD /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A5D5EA1AE7836100E3B3BD /* Feed.swift */; };
 		A2A5D6001AE7860200E3B3BD /* FeedList_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2A5D5F01AE7860200E3B3BD /* FeedList_iPhone.xib */; };
 		A2A5D6011AE7860200E3B3BD /* Live_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2A5D5F41AE7860200E3B3BD /* Live_iPhone.xib */; };
 		A2A5D6021AE7860200E3B3BD /* SplashView_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2A5D5F81AE7860200E3B3BD /* SplashView_iPhone.xib */; };
 		A2A5D6031AE7860200E3B3BD /* FeedListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A5D5FB1AE7860200E3B3BD /* FeedListViewController.swift */; };
 		A2A5D6041AE7860200E3B3BD /* LiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A5D5FD1AE7860200E3B3BD /* LiveViewController.swift */; };
 		A2A5D6051AE7860200E3B3BD /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A5D5FF1AE7860200E3B3BD /* SplashViewController.swift */; };
+		A2A5D6091AE9E28900E3B3BD /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A5D6081AE9E28900E3B3BD /* Feed.swift */; };
+		A2A5D60C1AEA2E3D00E3B3BD /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A5D60B1AEA2E3D00E3B3BD /* Utils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,13 +46,14 @@
 		A2A5D5D51AE782BC00E3B3BD /* LiveAndFeedsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LiveAndFeedsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2A5D5DA1AE782BC00E3B3BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A2A5D5DB1AE782BC00E3B3BD /* LiveAndFeedsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveAndFeedsTests.swift; sourceTree = "<group>"; };
-		A2A5D5EA1AE7836100E3B3BD /* Feed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
 		A2A5D5F01AE7860200E3B3BD /* FeedList_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedList_iPhone.xib; sourceTree = "<group>"; };
 		A2A5D5F41AE7860200E3B3BD /* Live_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Live_iPhone.xib; sourceTree = "<group>"; };
 		A2A5D5F81AE7860200E3B3BD /* SplashView_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SplashView_iPhone.xib; sourceTree = "<group>"; };
 		A2A5D5FB1AE7860200E3B3BD /* FeedListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedListViewController.swift; sourceTree = "<group>"; };
 		A2A5D5FD1AE7860200E3B3BD /* LiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveViewController.swift; sourceTree = "<group>"; };
 		A2A5D5FF1AE7860200E3B3BD /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		A2A5D6081AE9E28900E3B3BD /* Feed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
+		A2A5D60B1AEA2E3D00E3B3BD /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +137,7 @@
 		A2A5D5E71AE7836100E3B3BD /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				A2A5D60A1AEA2E2B00E3B3BD /* Utility */,
 				A2A5D5E81AE7836100E3B3BD /* CoredataEntities */,
 			);
 			path = Models;
@@ -151,7 +154,7 @@
 		A2A5D5E91AE7836100E3B3BD /* Feed */ = {
 			isa = PBXGroup;
 			children = (
-				A2A5D5EA1AE7836100E3B3BD /* Feed.swift */,
+				A2A5D6081AE9E28900E3B3BD /* Feed.swift */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -272,6 +275,14 @@
 			path = SplashViewController;
 			sourceTree = "<group>";
 		};
+		A2A5D60A1AEA2E2B00E3B3BD /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				A2A5D60B1AEA2E3D00E3B3BD /* Utils.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -376,12 +387,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				A2A5D5C81AE782BC00E3B3BD /* ViewController.swift in Sources */,
-				A2A5D5EB1AE7836100E3B3BD /* Feed.swift in Sources */,
 				A2A5D6031AE7860200E3B3BD /* FeedListViewController.swift in Sources */,
+				A2A5D6091AE9E28900E3B3BD /* Feed.swift in Sources */,
 				A2A5D5C31AE782BC00E3B3BD /* AppDelegate.swift in Sources */,
 				A2A5D6041AE7860200E3B3BD /* LiveViewController.swift in Sources */,
 				A2A5D6051AE7860200E3B3BD /* SplashViewController.swift in Sources */,
 				A2A5D5C61AE782BC00E3B3BD /* LiveAndFeeds.xcdatamodeld in Sources */,
+				A2A5D60C1AEA2E3D00E3B3BD /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
