@@ -11,16 +11,27 @@ import UIKit
 
 class BackgroundDownload: NSObject {
     
-    // Download Live Data from feed (http://feed.theplatform.com/f/ZwuVLC/sg_live)
-    func DownloadLiveData(){
-        
-        let liveFeedUrl = "http://feed.theplatform.com/f/ZwuVLC/sg_live"
+    
+    // Download data from MPX 
+    // Parameters : Pass mpx url to download
+    func DownloadData(url:NSString, success:(response: AnyObject!)->Void, failure : (error:NSError?)->Void){
         
         let afNetworkingManager = AFHTTPRequestOperationManager()
-    }
-    
-    func DownloadFeedData(feedurl:NSString){
         
+        var success = { (operation:AFHTTPRequestOperation!,response:AnyObject!) -> Void in
+            println(response.description)
+            success(response: response)
+            
+        }
+        
+        var failure = { (operation:AFHTTPRequestOperation!,response:NSError!) -> Void in
+            println(response.description)
+            failure(error: response)
+            
+        }
+        
+        afNetworkingManager.GET(url as String, parameters: nil, success: success, failure: failure)
+
     }
    
 }

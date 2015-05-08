@@ -16,7 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        deleteAndRecreateStore()
         let splashViewController = SplashViewController(nibName: "SplashView_iPhone", bundle : nil)
+    
         
         window?.rootViewController = splashViewController;
         
@@ -53,7 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     lazy var applicationDocumentsDirectory: NSURL = {
         // The directory the application uses to store the Core Data store file. This code uses a directory named "com.foxinternationalchannels.LiveAndFeeds" in the application's documents Application Support directory.
         let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
-        return urls[urls.count-1] as NSURL
+        return urls[urls.count-1] as! NSURL
     }()
 
     lazy var managedObjectModel: NSManagedObjectModel = {
@@ -76,7 +78,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data"
             dict[NSLocalizedFailureReasonErrorKey] = failureReason
             dict[NSUnderlyingErrorKey] = error
-            error = NSError(domain: "YOUR_ERROR_DOMAIN", code: 9999, userInfo: dict)
+            error = NSError(domain: "YOUR_ERROR_DOMAIN", code: 9999, userInfo: dict as [NSObject : AnyObject])
             // Replace this with code to handle the error appropriately.
             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
             NSLog("Unresolved error \(error), \(error!.userInfo)")
@@ -109,6 +111,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 abort()
             }
         }
+    }
+    
+    
+    func deleteAndRecreateStore() {
+        
+        var context:NSManagedObjectContext = self.managedObjectContext!
+        
+        // reset the context
+        context.reset()
+        
+        var persistanceStoreCoordinator = self.persistentStoreCoordinator!
+        
+        var error:NSError? = nil
+        
+        // Iterate through all persistant stores and remove them 
+        
+        for store in persistentStoreCoordinator!.persistentStores{
+            
+            var removed:Bool = persistentStoreCoordinator!.removePersistentStore(store as! NSPersistentStore, error: nil)
+            
+            let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("LiveAndFeeds.sqlite")
+            
+            if removed {
+                println("Data Base Removed");
+                NSFileManager.defaultManager().removeItemAtURL(url, error: nil)
+                persistanceStoreCoordinator.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil, error: nil)
+            }else{
+                println("Unable to remove persistance store")
+            }
+        }
+        
     }
 
 }

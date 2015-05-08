@@ -1,11 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6254" systemVersion="14B25" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7549" systemVersion="14B25" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Categories" representedClassName="LiveAndFeeds.Categories" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="mediaRelationShip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Media" inverseName="categoriesRelationShip" inverseEntity="Media" syncable="YES"/>
+    </entity>
+    <entity name="Content" representedClassName="LiveAndFeeds.Content" syncable="YES">
+        <attribute name="format" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="mediaRelationShip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Media" inverseName="contentRelationShip" inverseEntity="Media" syncable="YES"/>
+    </entity>
     <entity name="Feed" representedClassName="LiveAndFeeds.Feed" syncable="YES">
         <attribute name="airingCategory" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="urlValue" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="Media" representedClassName="LiveAndFeeds.Media" syncable="YES">
+        <attribute name="availableDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="defaultThumbnailUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="expirationDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="feedName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="guid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isLive" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="categoriesRelationShip" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Categories" inverseName="mediaRelationShip" inverseEntity="Categories" syncable="YES"/>
+        <relationship name="contentRelationShip" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Content" inverseName="mediaRelationShip" inverseEntity="Content" syncable="YES"/>
+    </entity>
     <elements>
+        <element name="Categories" positionX="-54" positionY="45" width="128" height="73"/>
+        <element name="Content" positionX="-36" positionY="54" width="128" height="88"/>
         <element name="Feed" positionX="-63" positionY="-18" width="128" height="90"/>
+        <element name="Media" positionX="-63" positionY="9" width="128" height="180"/>
     </elements>
 </model>

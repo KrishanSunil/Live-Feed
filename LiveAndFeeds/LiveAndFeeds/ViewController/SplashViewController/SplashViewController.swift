@@ -14,29 +14,30 @@ import CoreData
 
 class SplashViewController: UIViewController,NSXMLParserDelegate {
     
-    let xmlServerUrl:String = "http://tv.foxsportsasia.com/FeedList.xml"
+    
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     var parser = NSXMLParser()
     var feeds = [NSManagedObject]()
     var element = NSString()
     var utils = Utils()
-    let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     var xmlAttributeDictionary = NSDictionary()
+     let constant = Constants()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        beginParsingXml()
+        dispatch_async(utils.GlobalUserInitiatedQueue){
+            self.DownloadLiveData()
+            
+//            self.beginParsingXml();
+            
+        }
     }
     
     override func viewWillAppear(animated: Bool){
         super.viewWillAppear(false);
-        dispatch_async(utils.GlobalUserInitiatedQueue){
-            self.beginParsingXml();
-            
-        }
-        
-        
+  
     }
     
     override func didReceiveMemoryWarning() {
@@ -44,11 +45,37 @@ class SplashViewController: UIViewController,NSXMLParserDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    // MARK: - Downlod Live Feed
+    
+    func DownloadLiveData(){
+        
+       
+        var backgroundDownload = BackgroundDownload();
+        var mediaAccess = MediaAccess()
+        
+        backgroundDownload.DownloadData(constant.liveFeedUrl, success: { (response: AnyObject!)->Void in
+            println("Success")
+            
+            var mediaArray = response["entries"]! as! NSMutableArray
+           
+            mediaAccess.insertIntoMedia(response)
+            
+            self.beginParsingXml()
+            
+            }, failure: { (error:NSError?)->Void in
+                println("Failure")
+        })
+        
+        
+        
+        
+    }
+    
     // MARK: - Call XML Url
     
     func beginParsingXml(){
         feeds = []
-        let url = NSURL(string: xmlServerUrl)
+        let url = NSURL(string: constant.xmlServerUrl)
         parser = NSXMLParser(contentsOfURL: url)!
         parser.delegate = self
         parser.parse()
@@ -58,7 +85,7 @@ class SplashViewController: UIViewController,NSXMLParserDelegate {
     // MARK: - Parser Delegate
     
     
-    func parser(parser: NSXMLParser!, didStartElement elementName: String!, namespaceURI: String!, qualifiedName qName: String!, attributes attributeDict: [NSObject : AnyObject]!) {
+    func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [NSObject : AnyObject]) {
         element = elementName;
         
         if(elementName as NSString).isEqualToString("Feed"){
@@ -71,11 +98,11 @@ class SplashViewController: UIViewController,NSXMLParserDelegate {
         }
     }
     
-    func parser(parser: NSXMLParser!, foundCharacters string: String!)
+    func parser(parser: NSXMLParser, foundCharacters string: String?)
     {
         if(element as NSString).isEqualToString("Feed"){
             
-            let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             
             let managedObjectContext = appDelegate.managedObjectContext!
             
@@ -83,9 +110,9 @@ class SplashViewController: UIViewController,NSXMLParserDelegate {
             
             var feed = Feed(entity: feedEntityDescription!, insertIntoManagedObjectContext: managedObjectContext)
             
-            feed.name = xmlAttributeDictionary["name"]! as String
-            feed.airingCategory = xmlAttributeDictionary["airingCategory"]! as String
-            feed.urlValue = string
+            feed.name = xmlAttributeDictionary["name"]! as! String
+            feed.airingCategory = xmlAttributeDictionary["airingCategory"]! as! String
+            feed.urlValue = string!
             
             println("Url is \(string)")
             
@@ -100,7 +127,7 @@ class SplashViewController: UIViewController,NSXMLParserDelegate {
         }
     }
     
-    func parser(parser: NSXMLParser!, didEndElement elementName: String!, namespaceURI: String!, qualifiedName qName: String!)
+    func parser(parser: NSXMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?)
     {
         println("Element name \(elementName)")
         println("Qualified name \(qName)")
@@ -113,13 +140,16 @@ class SplashViewController: UIViewController,NSXMLParserDelegate {
                 let tabBarController = UITabBarController();
                 let liveViewController = LiveViewController(nibName : "Live_iPhone", bundle: nil)
                 let feedListViewController = FeedListViewController(nibName : "FeedList_iPhone" , bundle : nil)
-                let viewControllers = [liveViewController,feedListViewController]
+                
+                var liveNavigationController = UINavigationController(rootViewController: liveViewController);
+                var feedNavigationController = UINavigationController(rootViewController: feedListViewController)
+                let viewControllers = [liveNavigationController,feedNavigationController]
                 tabBarController.viewControllers = viewControllers;
                 
                 self.appDelegate.window?.rootViewController = tabBarController;
                 
-                liveViewController.tabBarItem = UITabBarItem(title: "Live", image: nil, selectedImage: nil)
-                feedListViewController.tabBarItem = UITabBarItem(title: "Feeds", image: nil, selectedImage: nil)
+                liveNavigationController.tabBarItem = UITabBarItem(title: "Live", image: nil, selectedImage: nil)
+                feedNavigationController.tabBarItem = UITabBarItem(title: "Feeds", image: nil, selectedImage: nil)
                 
            
 

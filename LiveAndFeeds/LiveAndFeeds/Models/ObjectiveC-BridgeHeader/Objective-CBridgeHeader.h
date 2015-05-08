@@ -13,3 +13,4 @@
 #endif
 
 #import "AFNetworking.h"
+#import "UIImageView+WebCache.h"
