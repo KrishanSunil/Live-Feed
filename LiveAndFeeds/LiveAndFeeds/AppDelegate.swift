@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import MediaPlayer
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -143,6 +144,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
     }
-
+    
+//    func application(application: UIApplication, supportedInterfaceOrientationsForWindow window: UIWindow?) -> Int {
+//        if let presentedViewController = window?.rootViewController?.presentedViewController{
+//            if (presentedViewController.isKindOfClass(MPMoviePlayerViewController) && !presentedViewController.isBeingDismissed()){
+//                
+//                return Int(UIInterfaceOrientationMask.Landscape.rawValue)
+//            }
+//        }
+//        
+//        return Int(UIInterfaceOrientationMask.Portrait.rawValue)
+//    }
+    
+   
+    
+    
 }
 

@@ -33,5 +33,41 @@ class BackgroundDownload: NSObject {
         afNetworkingManager.GET(url as String, parameters: nil, success: success, failure: failure)
 
     }
+    
+    
+    func ProcessSmilFileForVOD(url:NSString, success:(videoUrl:NSString) -> Void, failure:(error:NSError?) -> Void){
+        var urlStirg:NSString = (url as String) + "&manifest=m3u"
+        var smilUrl:NSURL = NSURL(string: urlStirg as String)!
+        var data:NSData = NSData(contentsOfURL: smilUrl)!
+        var dataString:NSString = NSString(data: data, encoding: NSUTF8StringEncoding)!
+      
+        
+       
+        
+        var smilData:TFHpple = TFHpple(HTMLData: data)
+        var xpathQueryString = "//seq/video"
+        var nodes = smilData.searchWithXPathQuery(xpathQueryString) as NSArray
+        
+        for (index, content) in enumerate(nodes) {
+            
+            var element = content as! TFHppleElement
+            var videoUrl = element.objectForKey("src")
+            println("Url To Play \(videoUrl)")
+            
+            success(videoUrl: videoUrl)
+            
+            break
+        }
+        
+        failure(error: nil)
+        
+        
+        // 4
+        
+
+
+    }
+    
+ 
    
 }

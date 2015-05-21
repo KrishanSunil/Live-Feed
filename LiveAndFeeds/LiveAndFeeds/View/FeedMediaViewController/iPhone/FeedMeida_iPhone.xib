@@ -34,7 +34,7 @@
                     </constraints>
                 </activityIndicatorView>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.18039215689999999" green="0.66274509800000003" blue="0.83137254900000002" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="kdD-3C-Fnf" secondAttribute="bottom" id="DTg-D6-r9Y"/>
                 <constraint firstAttribute="trailing" secondItem="kdD-3C-Fnf" secondAttribute="trailing" id="WoJ-T7-doi"/>

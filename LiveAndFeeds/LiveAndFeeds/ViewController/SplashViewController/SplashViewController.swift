@@ -27,17 +27,52 @@ class SplashViewController: UIViewController,NSXMLParserDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        dispatch_async(utils.GlobalUserInitiatedQueue){
-            self.DownloadLiveData()
-            
-//            self.beginParsingXml();
-            
-        }
+        
+//        dispatch_async(utils.GlobalUserInitiatedQueue){
+//            self.DownloadLiveData()
+//            
+////            self.beginParsingXml();
+//            
+//        }
     }
     
     override func viewWillAppear(animated: Bool){
         super.viewWillAppear(false);
-  
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(true)
+        if !Utils.isConnectedToNetwork() {
+            
+            var alert = UIAlertController(title: "Error!", message: "Cannot connect to the Internet, Please check your internet settings.. Your application will exit now", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: { action in
+                
+                switch action.style {
+                case .Default:
+                   exit(0)
+                case .Destructive:
+                    println("Destructive")
+                    
+                case .Cancel:
+                    println("Cancel")
+                    
+                    
+                }
+            }))
+                        self.presentViewController(alert, animated: true, completion: nil);
+            
+//            UIApplication.sharedApplication().keyWindow?.rootViewController?.presentViewController(alert, animated: true, completion: nil);
+            
+            return;
+        }
+        
+        dispatch_async(utils.GlobalUserInitiatedQueue){
+            self.DownloadLiveData()
+            
+            //            self.beginParsingXml();
+            
+        }
+
     }
     
     override func didReceiveMemoryWarning() {

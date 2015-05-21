@@ -14,3 +14,7 @@
 
 #import "AFNetworking.h"
 #import "UIImageView+WebCache.h"
+#import <libxml/HTMLtree.h>
+#import <libxml/xpath.h>
+#import "TFHpple.h"
+#import "XPathQuery.h"

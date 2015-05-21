@@ -12,6 +12,7 @@ import CoreData
 class MediaAccess: NSObject {
     
     var feedName : NSString?
+    var liveMedia : Bool = false
     
     func convertTimeStampStringToNSDate(timeStamp:NSNumber) -> NSDate {
 //        var timeInt:Double = (timeStamp as NSString).doubleValue;
@@ -45,7 +46,10 @@ class MediaAccess: NSObject {
             media.availableDate = self.convertTimeStampStringToNSDate(mediaObject["availableDate"]! as! NSNumber)
             media.expirationDate = self.convertTimeStampStringToNSDate(mediaObject["expirationDate"]! as! NSNumber)
             media.isLive = true
-            media.defaultThumbnailUrl = mediaObject["defaultThumbnailUrl"]! as! String
+            var url = mediaObject["defaultThumbnailUrl"]! as! String
+            var encodedUrl = url.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)
+           
+            media.defaultThumbnailUrl = encodedUrl!//mediaObject["defaultThumbnailUrl"]! as! String
             
             if self.feedName != nil{
                 media.feedName = self.feedName as! String
@@ -68,7 +72,7 @@ class MediaAccess: NSObject {
             
             // add Categories relationship ( Usually each media will have only one categories but their are some possibilites that media will have multiple categories )
             
-            var categoriesArray = mediaObject["categories"]! as! NSMutableArray
+            var categoriesArray = mediaObject["categories"]! as! NSArray
             
             for i in 0...categoriesArray.count-1 {
                 var category = categoriesArray[i] as! NSMutableDictionary

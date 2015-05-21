@@ -41,8 +41,36 @@ class FeedMediaViewController: ParentViewController,UICollectionViewDataSource,U
                 abort()
             }
             
+            self.enableFeedMediaCollectionView()
+            
             return;
         }
+        
+        if !Utils.isConnectedToNetwork() {
+            
+            var alert = UIAlertController(title: "Error!", message: "Cannot connect to the Internet, Please check your internet settings..", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: { action in
+                
+                switch action.style {
+                case .Default:
+                    self.activityIndicator.stopAnimating()
+                    self.activityIndicator.hidden = true
+                case .Destructive:
+                    println("Destructive")
+                    
+                case .Cancel:
+                    println("Cancel")
+                    
+                    
+                }
+            }))
+            self.presentViewController(alert, animated: true, completion: nil);
+            
+            //            UIApplication.sharedApplication().keyWindow?.rootViewController?.presentViewController(alert, animated: true, completion: nil);
+            
+            return;
+        }
+
         
         dispatch_async(utils.GlobalUserInitiatedQueue){
             self.DownloadMedia()
@@ -86,6 +114,14 @@ class FeedMediaViewController: ParentViewController,UICollectionViewDataSource,U
         // Dispose of any resources that can be recreated.
     }
     
+    func enableFeedMediaCollectionView(){
+        self.feedMediaCollectionView.dataSource = self;
+        self.feedMediaCollectionView.delegate = self;
+        self.feedMediaCollectionView .reloadData();
+        self.feedMediaCollectionView.hidden = false;
+        self.activityIndicator.stopAnimating()
+        self.activityIndicator.hidden = true
+    }
 
     // MARK - Media Data
     func DownloadMedia() {
@@ -108,10 +144,7 @@ class FeedMediaViewController: ParentViewController,UICollectionViewDataSource,U
                     abort()
                 }
             
-            self.feedMediaCollectionView.dataSource = self;
-            self.feedMediaCollectionView.delegate = self;
-            self.feedMediaCollectionView .reloadData();
-            self.feedMediaCollectionView.hidden = false;
+                self.enableFeedMediaCollectionView()
             }
             }, failure: { (error:NSError?)->Void in
                 println("Failure")
@@ -138,9 +171,10 @@ class FeedMediaViewController: ParentViewController,UICollectionViewDataSource,U
         var media = self._fetchedResultsController?.objectAtIndexPath(indexPath) as! Media
         cell.nameLable.text = media.title
         
-        cell.image.sd_setImageWithURL(NSURL(string: media.defaultThumbnailUrl), placeholderImage: UIImage(named: "placeholder.png"))
         
-        println("Cell Detail : \(cell)")
+        cell.image.sd_setImageWithURL(NSURL(string:media.defaultThumbnailUrl), placeholderImage: UIImage(named: "placeholder.png"))
+        
+
         return cell
     }
     
@@ -168,6 +202,15 @@ class FeedMediaViewController: ParentViewController,UICollectionViewDataSource,U
         //        }
         //        
         //        return CGSize (width: 331, height: 180)
+    }
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        
+        var selectedMedia = self._fetchedResultsController?.objectAtIndexPath(indexPath) as! Media
+        
+        
+        
+        self.processMedia(selectedMedia)
     }
 
 }

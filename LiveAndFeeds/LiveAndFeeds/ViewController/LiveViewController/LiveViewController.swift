@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import MediaPlayer
 
 class LiveViewController: ParentViewController, NSFetchedResultsControllerDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
 
@@ -15,6 +16,7 @@ class LiveViewController: ParentViewController, NSFetchedResultsControllerDelega
     @IBOutlet weak var liveCollectionView: UICollectionView!
     
     @IBOutlet weak var flowlayout: UICollectionViewFlowLayout!
+   
     
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     var _fetchedResultsController :NSFetchedResultsController?
@@ -22,6 +24,7 @@ class LiveViewController: ParentViewController, NSFetchedResultsControllerDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Live"
+        
         
         let nib = UINib(nibName: "LiveCollectionView_iPhone", bundle: nil)
         self.liveCollectionView.registerNib(nib, forCellWithReuseIdentifier: "Cell")
@@ -119,5 +122,51 @@ class LiveViewController: ParentViewController, NSFetchedResultsControllerDelega
 //        
 //        return CGSize (width: 331, height: 180)
     }
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        
+        var selectedMedia = self._fetchedResultsController?.objectAtIndexPath(indexPath) as! Media
+        self.processMedia(selectedMedia)
+    }
+    
+//    func processLiveMedia(clickedMedia:Media) {
+//        
+//        var contentObjects:NSArray = clickedMedia.contentRelationShip.allObjects as NSArray
+//        
+//        if contentObjects.count==0{
+//            
+//            
+//            return;
+//        }
+//        
+//        for (index, content) in enumerate(contentObjects){
+//            
+//            
+//            var clickedContent = content as! Content
+//            
+//            if clickedContent.format == format{
+//                
+//                let videoViewController = VideoViewController(nibName : "Video_iPhone" , bundle: nil)
+//                videoViewController.clickedMediaUrl = clickedContent.url
+//                videoViewController.hidesBottomBarWhenPushed = true
+//                
+//          
+//         
+//                self.navigationController?.pushViewController(videoViewController, animated: true);
+//                
+//            }
+//        }
+//        
+//    }
+    
+    
+    // MARK - View Will Appear Method
+    
+    override func viewWillAppear(animated: Bool) {
+        self.navigationController?.navigationBarHidden = true;
+        self.tabBarController?.tabBar.hidden = false
+    }
+    
+    
 
 }
