@@ -44,11 +44,16 @@ class ParentViewController: UIViewController {
             
             if clickedContent.format == M3U{
                 
-                let videoViewController = VideoViewController(nibName : "Video_iPhone" , bundle: nil)
+                let videoViewController = VideoViewController(nibName : getNibName("Video") , bundle: nil)
                 videoViewController.clickedMediaUrl = clickedContent.url
                 videoViewController.hidesBottomBarWhenPushed = true
                 
-                
+                if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
+                    self.tabBarController?.presentViewController(videoViewController, animated: true, completion: {
+                        
+                    });
+                    return
+                }
                 
                 self.navigationController?.pushViewController(videoViewController, animated: true);
                 break
@@ -76,11 +81,22 @@ class ParentViewController: UIViewController {
             backgroudnProcess.ProcessSmilFileForVOD(clickedContentUrl, success:{ (videoUrl:NSString) -> Void in
                 
                  dispatch_async(utils.GlobalMainQueue){
+                
                     
-                    let videoViewController = VideoViewController(nibName : "Video_iPhone" , bundle: nil)
+                    let videoViewController = VideoViewController(nibName : self.getNibName("Video") , bundle: nil)
                     videoViewController.clickedMediaUrl = videoUrl
                     videoViewController.hidesBottomBarWhenPushed = true
+                    
+                    if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
+                        self.tabBarController?.presentViewController(videoViewController, animated: true, completion: {
+                            
+                        });
+                        return
+                    }
+                    
                     self.navigationController?.pushViewController(videoViewController, animated: true);
+                   
+
                 }
                 
                 }, failure: { (error:NSError?) -> Void in
@@ -96,6 +112,15 @@ class ParentViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBarHidden = false;
         self.tabBarController?.tabBar.hidden = false
+    }
+    
+    
+    func getNibName(name : String) -> String {
+        
+        if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
+            return (name as String)+"_iPad"
+        }
+        return (name as String)+"_iPhone"
     }
 
 }

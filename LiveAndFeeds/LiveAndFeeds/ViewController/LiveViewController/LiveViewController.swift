@@ -101,6 +101,11 @@ class LiveViewController: ParentViewController, NSFetchedResultsControllerDelega
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         
+        if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
+            
+            return CGSizeMake(341.0, 180.0)
+        }
+        
         let widthForCell:CGFloat = CGRectGetWidth(collectionView.frame)-self.flowlayout.sectionInset.left - self.flowlayout.sectionInset.right - self.flowlayout.minimumInteritemSpacing * 0
         
         let cellWidth :CGFloat = widthForCell/1
@@ -129,35 +134,6 @@ class LiveViewController: ParentViewController, NSFetchedResultsControllerDelega
         self.processMedia(selectedMedia)
     }
     
-//    func processLiveMedia(clickedMedia:Media) {
-//        
-//        var contentObjects:NSArray = clickedMedia.contentRelationShip.allObjects as NSArray
-//        
-//        if contentObjects.count==0{
-//            
-//            
-//            return;
-//        }
-//        
-//        for (index, content) in enumerate(contentObjects){
-//            
-//            
-//            var clickedContent = content as! Content
-//            
-//            if clickedContent.format == format{
-//                
-//                let videoViewController = VideoViewController(nibName : "Video_iPhone" , bundle: nil)
-//                videoViewController.clickedMediaUrl = clickedContent.url
-//                videoViewController.hidesBottomBarWhenPushed = true
-//                
-//          
-//         
-//                self.navigationController?.pushViewController(videoViewController, animated: true);
-//                
-//            }
-//        }
-//        
-//    }
     
     
     // MARK - View Will Appear Method

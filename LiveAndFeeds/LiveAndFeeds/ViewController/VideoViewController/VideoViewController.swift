@@ -14,6 +14,15 @@ class VideoViewController: UIViewController  {
     
     @IBAction func doneButtonClicked(sender: AnyObject) {
         
+        self.moviePlayer.stop()
+        self.moviePlayer = nil
+        if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
+            self.dismissViewControllerAnimated(true, completion: {
+                
+            });
+            return
+        }
+        
         self.navigationController?.popViewControllerAnimated(true)
     }
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -78,12 +87,22 @@ class VideoViewController: UIViewController  {
         self.view.addSubview(moviePlayer.view)
         moviePlayer.view.hidden = true;
         
+        if UIDevice.currentDevice().userInterfaceIdiom == .Phone{
         self.transfromViewToLandscape()
+        }
 
     }
     
     func DoneButtonClicked(argument:NSNotification?){
         
+        self.moviePlayer.stop()
+            self.moviePlayer = nil
+        if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
+            self.dismissViewControllerAnimated(true, completion: {
+                
+            });
+            return
+        }
         
         self.navigationController?.popViewControllerAnimated(true)
         
@@ -100,6 +119,12 @@ class VideoViewController: UIViewController  {
             self.moviePlayer.view.hidden = false;
         } else {
             println("Movie Loading Error")
+            if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
+                self.tabBarController?.dismissViewControllerAnimated(true, completion: {
+                    
+                });
+            }
+            
             self.navigationController?.popViewControllerAnimated(true)
         }
         

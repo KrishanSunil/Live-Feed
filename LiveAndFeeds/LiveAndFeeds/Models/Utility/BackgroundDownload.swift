@@ -56,7 +56,7 @@ class BackgroundDownload: NSObject {
             
             success(videoUrl: videoUrl)
             
-            break
+            return
         }
         
         failure(error: nil)

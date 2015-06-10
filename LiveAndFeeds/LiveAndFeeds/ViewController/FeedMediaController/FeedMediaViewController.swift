@@ -11,6 +11,8 @@ import CoreData
 
 class FeedMediaViewController: ParentViewController,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     
+
+    
     
     @IBOutlet weak var flowlayout: UICollectionViewFlowLayout!
     var clickedFeed : Feed!
@@ -24,6 +26,15 @@ class FeedMediaViewController: ParentViewController,UICollectionViewDataSource,U
   
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        loadMediaDetails()
+    
+    }
+    
+    func loadMediaDetails(){
+        if clickedFeed == nil {
+            return
+        }
         self.title = clickedFeed.name
         self.activityIndicator.startAnimating()
         
@@ -34,7 +45,7 @@ class FeedMediaViewController: ParentViewController,UICollectionViewDataSource,U
         self.feedMediaCollectionView.registerNib(nib, forCellWithReuseIdentifier: "Cell")
         
         if mediaCount > 0 {
-            
+            self._fetchedResultsController = nil;
             var error:NSError?
             if !self.fetchedResultsController.performFetch(&error){
                 println("Fetch Error : \(error?.localizedDescription)")
@@ -70,16 +81,15 @@ class FeedMediaViewController: ParentViewController,UICollectionViewDataSource,U
             
             return;
         }
-
+        
         
         dispatch_async(utils.GlobalUserInitiatedQueue){
             self.DownloadMedia()
-   
+            
         }
+        
+        
 
-        
-        
-    
     }
     
     var fetchedResultsController:NSFetchedResultsController {
@@ -182,6 +192,10 @@ class FeedMediaViewController: ParentViewController,UICollectionViewDataSource,U
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         
+        if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
+            return CGSizeMake(341.0, 180.0)
+        }
+        
         let widthForCell:CGFloat = CGRectGetWidth(collectionView.frame)-self.flowlayout.sectionInset.left - self.flowlayout.sectionInset.right - self.flowlayout.minimumInteritemSpacing * 0
         
         let cellWidth :CGFloat = widthForCell/1
@@ -211,6 +225,13 @@ class FeedMediaViewController: ParentViewController,UICollectionViewDataSource,U
         
         
         self.processMedia(selectedMedia)
+    }
+    
+    // MARK - Feed Media Clicked Delegate Method
+    
+    func feedMediaClicked() {
+        println("Split View Method Called")
+        loadMediaDetails()
     }
 
 }

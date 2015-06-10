@@ -13,7 +13,7 @@ class FeedListViewController: ParentViewController,UITableViewDataSource,UITable
 
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     var _fetchedResultsController :NSFetchedResultsController?
-    
+    var isClicked:Bool = false
     @IBOutlet weak var feedTableViewController: UITableView!
     
     override func viewDidLoad() {
@@ -77,16 +77,44 @@ class FeedListViewController: ParentViewController,UITableViewDataSource,UITable
         var feed = self._fetchedResultsController?.objectAtIndexPath(indexPath) as! Feed
         cell.textLabel!.text = feed.name
         
+        if indexPath.row == 0 && !isClicked {
+            tableView.selectRowAtIndexPath(indexPath, animated: true, scrollPosition: UITableViewScrollPosition.None)
+        }
         
         return cell
         
     }
     
+    override func viewWillAppear(animated: Bool) {
+        
+        super.viewWillAppear(animated)
+        
+        if !isClicked && UIDevice.currentDevice().userInterfaceIdiom == .Pad {
+            let firstFeed = self._fetchedResultsController?.fetchedObjects?.first as! Feed
+            
+            var feedMediaViewController = self.splitViewController?.viewControllers[1] as! FeedMediaViewController
+            feedMediaViewController.clickedFeed = firstFeed
+            feedMediaViewController.feedMediaClicked();
+            
+            return
+        }
+    }
+    
 // MARK - Table View Delegate Method
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    
+    isClicked = true
+     var selectedFeed = self._fetchedResultsController?.objectAtIndexPath(indexPath) as! Feed
+    if self.splitViewController != nil {
+        var feedMediaViewController = self.splitViewController?.viewControllers[1] as! FeedMediaViewController
+        feedMediaViewController.clickedFeed = selectedFeed
         
-        var selectedFeed = self._fetchedResultsController?.objectAtIndexPath(indexPath) as! Feed
+        feedMediaViewController._fetchedResultsController = nil
+        feedMediaViewController.feedMediaClicked();
+        return;
+    }
+//        var selectedFeed = self._fetchedResultsController?.objectAtIndexPath(indexPath) as! Feed
         var feedMediaViewController = FeedMediaViewController(nibName:"FeedMeida_iPhone", bundle:nil)
         feedMediaViewController.clickedFeed = selectedFeed
         navigationController?.pushViewController(feedMediaViewController, animated: true)

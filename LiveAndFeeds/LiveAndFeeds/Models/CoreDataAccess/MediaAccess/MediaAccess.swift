@@ -74,6 +74,8 @@ class MediaAccess: NSObject {
             
             var categoriesArray = mediaObject["categories"]! as! NSArray
             
+            if categoriesArray.count > 0 {
+            
             for i in 0...categoriesArray.count-1 {
                 var category = categoriesArray[i] as! NSMutableDictionary
                 var categoryEntityDescription = NSEntityDescription.entityForName("Categories", inManagedObjectContext: managedObjectContext)
@@ -85,6 +87,7 @@ class MediaAccess: NSObject {
                 media.addCategoriesToMedia(categoryEntity)
             }
             
+            }
             
             
             var error: NSError?

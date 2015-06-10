@@ -12,7 +12,7 @@ import CoreData
 
 
 
-class SplashViewController: UIViewController,NSXMLParserDelegate {
+class SplashViewController: ParentViewController,NSXMLParserDelegate {
     
     
     
@@ -171,23 +171,16 @@ class SplashViewController: UIViewController,NSXMLParserDelegate {
         if ((elementName as NSString).isEqualToString("feedList")){
             
             dispatch_async(utils.GlobalMainQueue){
+                
+                if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
+                   self.setupPhoneScreens()
+                } else {
+                    self.setupPadScreen()
+                }
+                
+                
                 self.activityIndicator.stopAnimating()
-                let tabBarController = UITabBarController();
-                let liveViewController = LiveViewController(nibName : "Live_iPhone", bundle: nil)
-                let feedListViewController = FeedListViewController(nibName : "FeedList_iPhone" , bundle : nil)
                 
-                var liveNavigationController = UINavigationController(rootViewController: liveViewController);
-                var feedNavigationController = UINavigationController(rootViewController: feedListViewController)
-                let viewControllers = [liveNavigationController,feedNavigationController]
-                tabBarController.viewControllers = viewControllers;
-                
-                self.appDelegate.window?.rootViewController = tabBarController;
-                
-                liveNavigationController.tabBarItem = UITabBarItem(title: "Live", image: nil, selectedImage: nil)
-                feedNavigationController.tabBarItem = UITabBarItem(title: "Feeds", image: nil, selectedImage: nil)
-                
-           
-
                 
             }
             
@@ -195,6 +188,58 @@ class SplashViewController: UIViewController,NSXMLParserDelegate {
     }
     
     
+    // SetUp Tab Bar Controller For Phone
+    func setupPhoneScreens() {
+        
+        let tabBarController = UITabBarController();
+       
+        //Live_iPhone
+        let liveViewController = LiveViewController(nibName : self.getNibName("Live"), bundle: nil)
+        let feedListViewController = FeedListViewController(nibName : "FeedList_iPhone" , bundle : nil)
+        
+        var liveNavigationController = UINavigationController(rootViewController: liveViewController);
+        var feedNavigationController = UINavigationController(rootViewController: feedListViewController)
+
+        let viewControllers = [liveNavigationController,feedNavigationController]
+        tabBarController.viewControllers = viewControllers;
+
+
+        self.appDelegate.window?.rootViewController = tabBarController;
+        
+        liveNavigationController.tabBarItem = UITabBarItem(title: "Live", image: nil, selectedImage: nil)
+        feedNavigationController.tabBarItem = UITabBarItem(title: "Feeds", image: nil, selectedImage: nil)
+        
+    }
+    
+    func setupPadScreen() {
+        let tabBarController = UITabBarController();
+        //Live_iPhone
+        let liveViewController = LiveViewController(nibName : self.getNibName("Live"), bundle: nil)
+        let feedListViewController = FeedListViewController(nibName : "FeedList_iPhone" , bundle : nil)
+        let splitViewController = UISplitViewController()
+        
+        var liveNavigationController = UINavigationController(rootViewController: liveViewController);
+       
+        var feedMediaViewController = FeedMediaViewController(nibName: self.getNibName("FeedMeida"), bundle:nil)
+        
+        
+        
+        let splitViewControllers = [feedListViewController,feedMediaViewController]
+         splitViewController.viewControllers = splitViewControllers
+        let viewControllers = [liveNavigationController,splitViewController]
+       
+        tabBarController.viewControllers = viewControllers;
+
+        
+        self.appDelegate.window?.rootViewController = tabBarController;
+        
+        liveNavigationController.tabBarItem = UITabBarItem(title: "Live", image: nil, selectedImage: nil)
+        splitViewController.tabBarItem = UITabBarItem(title: "Feeds", image: nil, selectedImage: nil)
+        //                splitViewController.tabBarItem = UITabBarItem(title: "Feeds", image: nil, selectedImage: nil)
+        
+        
+
+    }
     
     
     
