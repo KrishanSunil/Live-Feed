@@ -13,6 +13,7 @@ class MediaAccess: NSObject {
     
     var feedName : NSString?
     var liveMedia : Bool = false
+    let live:NSString = "Live"
     
     func convertTimeStampStringToNSDate(timeStamp:NSNumber) -> NSDate {
 //        var timeInt:Double = (timeStamp as NSString).doubleValue;
@@ -101,7 +102,25 @@ class MediaAccess: NSObject {
     
     func insertIntoMedia(responseObject:AnyObject!, feedname name:NSString){
         self.feedName = name;
+        
+         var mediaObjects:[Media] = getMedia(name);
+        
+        if mediaObjects.count > 0 {
+            
+            for media in mediaObjects {
+                self.deleteMedia(media)
+            }
+        }
         self.insertIntoMedia(responseObject)
+    }
+    
+    func deleteMedia(mediaToDelete:Media!) {
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let manageOBC = appDelegate.managedObjectContext!
+        manageOBC.deleteObject(mediaToDelete)
+        manageOBC.save(nil)
+        println("************** Object Deleted ********************")
     }
     
     

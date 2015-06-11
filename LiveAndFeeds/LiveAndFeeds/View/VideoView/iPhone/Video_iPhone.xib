@@ -35,7 +35,7 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="doneButtonClicked:" destination="-1" eventType="touchUpInside" id="DRc-aT-FTg"/>
+                        <action selector="buttonDoneClicked:" destination="-1" eventType="touchUpInside" id="axE-s5-2Ri"/>
                     </connections>
                 </button>
             </subviews>

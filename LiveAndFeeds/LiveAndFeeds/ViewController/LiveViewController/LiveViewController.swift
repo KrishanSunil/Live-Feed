@@ -14,9 +14,9 @@ class LiveViewController: ParentViewController, NSFetchedResultsControllerDelega
 
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var liveCollectionView: UICollectionView!
-    
+    var pullDownRefreshController:UIRefreshControl!
     @IBOutlet weak var flowlayout: UICollectionViewFlowLayout!
-   
+   var utils = Utils()
     
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     var _fetchedResultsController :NSFetchedResultsController?
@@ -28,7 +28,10 @@ class LiveViewController: ParentViewController, NSFetchedResultsControllerDelega
         
         let nib = UINib(nibName: "LiveCollectionView_iPhone", bundle: nil)
         self.liveCollectionView.registerNib(nib, forCellWithReuseIdentifier: "Cell")
-        
+       
+        self.pullDownRefreshController = UIRefreshControl()
+        self.pullDownRefreshController.addTarget(self, action:Selector("refreshCollectionView"), forControlEvents: UIControlEvents.ValueChanged)
+        self.liveCollectionView.addSubview(self.pullDownRefreshController)
         var error:NSError?
         if !self.fetchedResultsController.performFetch(&error){
             println("Fetch Error : \(error?.localizedDescription)")
@@ -46,7 +49,8 @@ class LiveViewController: ParentViewController, NSFetchedResultsControllerDelega
         let managedObjectContext = appDelegate.managedObjectContext!
         
         let feedEntityDescription = NSEntityDescription.entityForName("Media", inManagedObjectContext: managedObjectContext)
-        let livePredicate = NSPredicate(format: "isLive == %@", true as NSNumber )
+//        let livePredicate = NSPredicate(format: "isLive == %@", true as NSNumber )
+        let livePredicate = NSPredicate(format: "feedName == %@", "Live" )
         
         let sortDescriptor = NSSortDescriptor(key: "title", ascending: true)
         
@@ -110,22 +114,9 @@ class LiveViewController: ParentViewController, NSFetchedResultsControllerDelega
         
         let cellWidth :CGFloat = widthForCell/1
         
-        //        self.flowlayout.itemSize = CGSizeMake(cellWidth, self.flowlayout.itemSize.height)
         return CGSizeMake(cellWidth, cellWidth/1.7)
 
         
-//        let isIphone:Bool = UIDevice.currentDevice().userInterfaceIdiom == .Phone
-//        
-//        if isIphone {
-//            let screenSize : CGRect = UIScreen.mainScreen().bounds
-//            
-//            let screenWidth = screenSize.width
-//            let screenHeight = screenSize.height
-//            
-//            return CGSize(width: 400.0, height: screenWidth/1.7)
-//        }
-//        
-//        return CGSize (width: 331, height: 180)
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
@@ -143,6 +134,57 @@ class LiveViewController: ParentViewController, NSFetchedResultsControllerDelega
         self.tabBarController?.tabBar.hidden = false
     }
     
+  // MARK - Pull Down Refresh View 
+    func refreshCollectionView() {
+        
+       
+        
+      
+        if !Utils.isConnectedToNetwork() {
+            
+            var alert = UIAlertController(title: "Error!", message: "Cannot connect to the Internet, Please check your internet settings.. Your application will exit now", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: { action in
+                
+                switch action.style {
+                case .Default:
+                    exit(0)
+                case .Destructive:
+                    self.println("Destructive")
+                    
+                case .Cancel:
+               self.println("Cancel")
+                    
+                    
+                }
+            }))
+            self.presentViewController(alert, animated: true, completion: nil);
+
+            
+            return;
+        }
+        self.view.userInteractionEnabled = false;
+        dispatch_async(utils.GlobalUserInitiatedQueue){
+            self.DownloadLiveData()  
+        }
+
+        
+    }
+
     
+    override func LiveMediaInsertSuccess() {
+        
+        self._fetchedResultsController = nil
+        var error:NSError?
+        if !self.fetchedResultsController.performFetch(&error){
+            println("Fetch Error : \(error?.localizedDescription)")
+            abort()
+        }
+        self.liveCollectionView.reloadData()
+        self.pullDownRefreshController.endRefreshing()
+        self.view.userInteractionEnabled = true
+    
+    }
+    
+
 
 }

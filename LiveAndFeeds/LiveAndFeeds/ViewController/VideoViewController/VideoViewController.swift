@@ -12,17 +12,17 @@ import MediaPlayer
 
 class VideoViewController: UIViewController  {
     
-    @IBAction func doneButtonClicked(sender: AnyObject) {
+    @IBAction func buttonDoneClicked(sender: AnyObject) {
         
-        self.moviePlayer.stop()
-        self.moviePlayer = nil
+//           NSNotificationCenter.defaultCenter().removeObserver(self, forKeyPath: MPMoviePlayerPlaybackDidFinishNotification)
+//        self.moviePlayer.stop()
         if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
             self.dismissViewControllerAnimated(true, completion: {
                 
             });
             return
         }
-        
+
         self.navigationController?.popViewControllerAnimated(true)
     }
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -38,7 +38,7 @@ class VideoViewController: UIViewController  {
         self.navigationController?.navigationBarHidden = true;
         self.activityIndicator.startAnimating()
     
-      NSNotificationCenter.defaultCenter().addObserver(self, selector: "DoneButtonClicked:", name: MPMoviePlayerPlaybackDidFinishNotification, object: nil)
+      NSNotificationCenter.defaultCenter().addObserver(self, selector: "movieDoneClicked:", name: MPMoviePlayerPlaybackDidFinishNotification, object: nil)
         
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "PlayBackStateChanged:", name: MPMoviePlayerLoadStateDidChangeNotification, object: nil)
@@ -93,18 +93,41 @@ class VideoViewController: UIViewController  {
 
     }
     
-    func DoneButtonClicked(argument:NSNotification?){
+    func stopVideoPlaying() {
         
-        self.moviePlayer.stop()
-            self.moviePlayer = nil
-        if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
-            self.dismissViewControllerAnimated(true, completion: {
-                
-            });
-            return
+                self.moviePlayer.stop()
+                if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
+                    self.dismissViewControllerAnimated(true, completion: {
+        
+                    });
+                    return
+                }
+        
+                self.navigationController?.popViewControllerAnimated(true)
+    }
+    
+    func movieDoneClicked(argument:NSNotification){
+        
+
+        
+        var reason = argument.userInfo![MPMoviePlayerPlaybackDidFinishReasonUserInfoKey] as! NSNumber?
+        
+        if let theReason = reason {
+            
+                let reasonValue  = MPMovieFinishReason(rawValue: theReason.integerValue)
+            
+            switch reasonValue! {
+            case .PlaybackEnded:
+                self.stopVideoPlaying()
+            case .PlaybackError:
+                self.stopVideoPlaying()
+            case .UserExited:
+                self.stopVideoPlaying()
+             
+            default:
+                println("Antoher Event happent")
+            }
         }
-        
-        self.navigationController?.popViewControllerAnimated(true)
         
     }
     
@@ -117,16 +140,17 @@ class VideoViewController: UIViewController  {
             self.activityIndicator.stopAnimating()
             self.activityIndicator.hidden = true
             self.moviePlayer.view.hidden = false;
-        } else {
-            println("Movie Loading Error")
-            if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
-                self.tabBarController?.dismissViewControllerAnimated(true, completion: {
-                    
-                });
-            }
-            
-            self.navigationController?.popViewControllerAnimated(true)
         }
+//        else {
+//            println("Movie Loading Error")
+//            if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
+//                self.tabBarController?.dismissViewControllerAnimated(true, completion: {
+//                    
+//                });
+//            }
+//            
+//            self.navigationController?.popViewControllerAnimated(true)
+//        }
         
     }
     
@@ -151,6 +175,10 @@ class VideoViewController: UIViewController  {
         
         return (Double( angle) / 180.0) * M_PI
     }
-
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+//        NSNotificationCenter.defaultCenter().removeObserver(self, forKeyPath: MPMoviePlayerPlaybackDidFinishNotification)
+    }
 
 }

@@ -27,13 +27,6 @@ class SplashViewController: ParentViewController,NSXMLParserDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        dispatch_async(utils.GlobalUserInitiatedQueue){
-//            self.DownloadLiveData()
-//            
-////            self.beginParsingXml();
-//            
-//        }
     }
     
     override func viewWillAppear(animated: Bool){
@@ -51,26 +44,21 @@ class SplashViewController: ParentViewController,NSXMLParserDelegate {
                 case .Default:
                    exit(0)
                 case .Destructive:
-                    println("Destructive")
+                    self.println("Destructive")
                     
                 case .Cancel:
-                    println("Cancel")
+               self.println("Cancel")
                     
                     
                 }
             }))
                         self.presentViewController(alert, animated: true, completion: nil);
             
-//            UIApplication.sharedApplication().keyWindow?.rootViewController?.presentViewController(alert, animated: true, completion: nil);
-            
             return;
         }
         
         dispatch_async(utils.GlobalUserInitiatedQueue){
             self.DownloadLiveData()
-            
-            //            self.beginParsingXml();
-            
         }
 
     }
@@ -80,31 +68,11 @@ class SplashViewController: ParentViewController,NSXMLParserDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    // MARK: - Downlod Live Feed
-    
-    func DownloadLiveData(){
-        
-       
-        var backgroundDownload = BackgroundDownload();
-        var mediaAccess = MediaAccess()
-        
-        backgroundDownload.DownloadData(constant.liveFeedUrl, success: { (response: AnyObject!)->Void in
-            println("Success")
-            
-            var mediaArray = response["entries"]! as! NSMutableArray
-           
-            mediaAccess.insertIntoMedia(response)
-            
-            self.beginParsingXml()
-            
-            }, failure: { (error:NSError?)->Void in
-                println("Failure")
-        })
-        
-        
-        
-        
+    override func LiveMediaInsertSuccess() {
+     self.beginParsingXml()
     }
+    
+
     
     // MARK: - Call XML Url
     
@@ -241,7 +209,14 @@ class SplashViewController: ParentViewController,NSXMLParserDelegate {
 
     }
     
-    
+    override func println(object:Any){
+        
+        #if DEBUG
+        Swift.println(object)
+        #endif
+        
+        
+    }
     
     
 }

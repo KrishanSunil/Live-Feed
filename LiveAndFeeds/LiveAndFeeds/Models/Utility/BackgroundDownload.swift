@@ -19,13 +19,13 @@ class BackgroundDownload: NSObject {
         let afNetworkingManager = AFHTTPRequestOperationManager()
         
         var success = { (operation:AFHTTPRequestOperation!,response:AnyObject!) -> Void in
-            println(response.description)
+          //  println(response.description)
             success(response: response)
             
         }
         
         var failure = { (operation:AFHTTPRequestOperation!,response:NSError!) -> Void in
-            println(response.description)
+           // println(response.description)
             failure(error: response)
             
         }

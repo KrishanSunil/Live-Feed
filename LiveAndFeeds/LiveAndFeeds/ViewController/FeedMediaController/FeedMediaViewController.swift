@@ -18,6 +18,7 @@ class FeedMediaViewController: ParentViewController,UICollectionViewDataSource,U
     var clickedFeed : Feed!
     
     @IBOutlet weak var feedMediaCollectionView: UICollectionView!
+    var pullDownRefreshController:UIRefreshControl!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -26,6 +27,10 @@ class FeedMediaViewController: ParentViewController,UICollectionViewDataSource,U
   
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.pullDownRefreshController = UIRefreshControl()
+        self.pullDownRefreshController.addTarget(self, action:Selector("refreshCollectionView"), forControlEvents: UIControlEvents.ValueChanged)
+        self.feedMediaCollectionView.addSubview(self.pullDownRefreshController)
 
         loadMediaDetails()
     
@@ -48,7 +53,7 @@ class FeedMediaViewController: ParentViewController,UICollectionViewDataSource,U
             self._fetchedResultsController = nil;
             var error:NSError?
             if !self.fetchedResultsController.performFetch(&error){
-                println("Fetch Error : \(error?.localizedDescription)")
+                ////println("Fetch Error : \(error?.localizedDescription)")
                 abort()
             }
             
@@ -67,10 +72,10 @@ class FeedMediaViewController: ParentViewController,UICollectionViewDataSource,U
                     self.activityIndicator.stopAnimating()
                     self.activityIndicator.hidden = true
                 case .Destructive:
-                    println("Destructive")
+                   self.println("Destructive")
                     
                 case .Cancel:
-                    println("Cancel")
+                    self.println("Cancel")
                     
                     
                 }
@@ -131,6 +136,13 @@ class FeedMediaViewController: ParentViewController,UICollectionViewDataSource,U
         self.feedMediaCollectionView.hidden = false;
         self.activityIndicator.stopAnimating()
         self.activityIndicator.hidden = true
+        self.pullDownRefreshController.endRefreshing()
+        
+        if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
+            self.splitViewController!.view.userInteractionEnabled = true
+        }else{
+            self.view.userInteractionEnabled = true
+        }
     }
 
     // MARK - Media Data
@@ -140,7 +152,7 @@ class FeedMediaViewController: ParentViewController,UICollectionViewDataSource,U
         var mediaAccess = MediaAccess()
         
         backgroundDownload.DownloadData(clickedFeed.urlValue, success: { (response: AnyObject!)->Void in
-            println("Success")
+            //println("Success")
             
             var mediaArray = response["entries"]! as! NSMutableArray
             
@@ -150,14 +162,14 @@ class FeedMediaViewController: ParentViewController,UICollectionViewDataSource,U
             
                 var error:NSError?
                 if !self.fetchedResultsController.performFetch(&error){
-                    println("Fetch Error : \(error?.localizedDescription)")
+                    //println("Fetch Error : \(error?.localizedDescription)")
                     abort()
                 }
             
                 self.enableFeedMediaCollectionView()
             }
             }, failure: { (error:NSError?)->Void in
-                println("Failure")
+                //println("Failure")
         })
 
         
@@ -230,8 +242,53 @@ class FeedMediaViewController: ParentViewController,UICollectionViewDataSource,U
     // MARK - Feed Media Clicked Delegate Method
     
     func feedMediaClicked() {
-        println("Split View Method Called")
+        //////println("Split View Method Called")
+        if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
+            self.splitViewController!.view.userInteractionEnabled = false
+        }else{
+            self.view.userInteractionEnabled = false
+        }
         loadMediaDetails()
+    }
+    
+    
+    func refreshCollectionView() {
+        if !Utils.isConnectedToNetwork() {
+            
+            var alert = UIAlertController(title: "Error!", message: "Cannot connect to the Internet, Please check your internet settings..", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: { action in
+                
+                switch action.style {
+                case .Default:
+                    self.activityIndicator.stopAnimating()
+                    self.activityIndicator.hidden = true
+                case .Destructive:
+                    self.println("Destructive")
+                    
+                case .Cancel:
+                    self.println("Cancel")
+                    
+                    
+                }
+            }))
+            self.presentViewController(alert, animated: true, completion: nil);
+            
+            //            UIApplication.sharedApplication().keyWindow?.rootViewController?.presentViewController(alert, animated: true, completion: nil);
+            
+            return;
+        }
+        
+        if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
+            self.splitViewController!.view.userInteractionEnabled = false
+        }else{
+            self.view.userInteractionEnabled = false
+        }
+        
+        dispatch_async(utils.GlobalUserInitiatedQueue){
+            self.DownloadMedia()
+            
+        }
+
     }
 
 }

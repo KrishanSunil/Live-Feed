@@ -135,11 +135,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("LiveAndFeeds.sqlite")
             
             if removed {
-                println("Data Base Removed");
+                //println("Data Base Removed");
                 NSFileManager.defaultManager().removeItemAtURL(url, error: nil)
                 persistanceStoreCoordinator.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil, error: nil)
             }else{
-                println("Unable to remove persistance store")
+               // println("Unable to remove persistance store")
             }
         }
         
