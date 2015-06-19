@@ -101,7 +101,7 @@ class ParentViewController: UIViewController {
                 
                 }, failure: { (error:NSError?) -> Void in
                     
-                    self.println("Failed to obtain url from feed")
+                    println("Failed to obtain url from feed")
             })
         }
         
@@ -133,7 +133,7 @@ class ParentViewController: UIViewController {
         var mediaAccess = MediaAccess()
         var constant = Constants()
         backgroundDownload.DownloadData(constant.liveFeedUrl, success: { (response: AnyObject!)->Void in
-       self.println("Success")
+       println("Success")
             
             var mediaArray = response["entries"]! as! NSMutableArray
             mediaAccess.feedName = mediaAccess.live
@@ -143,7 +143,7 @@ class ParentViewController: UIViewController {
             self.LiveMediaInsertSuccess()
             
             }, failure: { (error:NSError?)->Void in
-                self.println("Failure")
+                println("Failure")
         })
 
     }
@@ -152,13 +152,13 @@ class ParentViewController: UIViewController {
         println("Overwrite this function")
     }
     
-    func println(object:Any){
-        
-        #if DEBUG
-            Swift.println(object)
-        #endif
-        
-        
-    }
+//    func println(object:Any){
+//        
+//        #if DEBUG
+//            Swift.println(object)
+//        #endif
+//        
+//        
+//    }
 
 }

@@ -72,10 +72,10 @@ class FeedMediaViewController: ParentViewController,UICollectionViewDataSource,U
                     self.activityIndicator.stopAnimating()
                     self.activityIndicator.hidden = true
                 case .Destructive:
-                   self.println("Destructive")
+                    println("Destructive")
                     
                 case .Cancel:
-                    self.println("Cancel")
+                    println("Cancel")
                     
                     
                 }
@@ -263,10 +263,10 @@ class FeedMediaViewController: ParentViewController,UICollectionViewDataSource,U
                     self.activityIndicator.stopAnimating()
                     self.activityIndicator.hidden = true
                 case .Destructive:
-                    self.println("Destructive")
+                        println("Destructive")
                     
                 case .Cancel:
-                    self.println("Cancel")
+                    println("Cancel")
                     
                     
                 }

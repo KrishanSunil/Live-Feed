@@ -25,10 +25,15 @@
         <relationship name="categoriesRelationShip" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Categories" inverseName="mediaRelationShip" inverseEntity="Categories" syncable="YES"/>
         <relationship name="contentRelationShip" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Content" inverseName="mediaRelationShip" inverseEntity="Content" syncable="YES"/>
     </entity>
+    <entity name="Users" representedClassName="LiveAndFeeds.Users" syncable="YES">
+        <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userName" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <elements>
         <element name="Categories" positionX="-54" positionY="45" width="128" height="73"/>
         <element name="Content" positionX="-36" positionY="54" width="128" height="88"/>
         <element name="Feed" positionX="-63" positionY="-18" width="128" height="90"/>
         <element name="Media" positionX="-63" positionY="9" width="128" height="180"/>
+        <element name="Users" positionX="-54" positionY="72" width="128" height="75"/>
     </elements>
 </model>

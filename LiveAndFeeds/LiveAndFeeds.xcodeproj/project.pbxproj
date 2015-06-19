@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		7368A21B6BE1987D98AE03CA /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A65B00C131AC6D3C20943597 /* libPods.a */; };
 		A2034F751B1ECA40004CD2B9 /* Live_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2034F741B1ECA40004CD2B9 /* Live_iPad.xib */; };
-		A2034F7D1B1ED5DF004CD2B9 /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2034F7C1B1ED5DF004CD2B9 /* SplitViewController.swift */; };
 		A2034F7F1B1EF9D5004CD2B9 /* FeedMeida_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2034F7E1B1EF9D5004CD2B9 /* FeedMeida_iPad.xib */; };
 		A2491AEF1AEA4B1600595433 /* BackgroundDownload.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2491AEE1AEA4B1600595433 /* BackgroundDownload.swift */; };
 		A2725CC91AEF26090056D95B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2725CC81AEF26090056D95B /* Constants.swift */; };
@@ -19,7 +18,6 @@
 		A2725CD51AEF60B10056D95B /* Media+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2725CD41AEF60B10056D95B /* Media+CoreData.swift */; };
 		A2725CD81AEF773F0056D95B /* LiveCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2725CD71AEF773F0056D95B /* LiveCollectionViewCell.swift */; };
 		A2725CDD1AEF77880056D95B /* LiveCollectionView_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2725CDC1AEF77880056D95B /* LiveCollectionView_iPhone.xib */; };
-		A2725CDF1AEF93350056D95B /* placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A2725CDE1AEF93350056D95B /* placeholder@2x.png */; };
 		A288DD881B0AF6FA00256E56 /* HTMLNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A288DD851B0AF6FA00256E56 /* HTMLNode.swift */; };
 		A288DD891B0AF6FA00256E56 /* HTMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A288DD861B0AF6FA00256E56 /* HTMLParser.swift */; };
 		A288DD8B1B0AF77B00256E56 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A288DD8A1B0AF77B00256E56 /* libxml2.dylib */; };
@@ -48,6 +46,12 @@
 		A2A5D6051AE7860200E3B3BD /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A5D5FF1AE7860200E3B3BD /* SplashViewController.swift */; };
 		A2A5D6091AE9E28900E3B3BD /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A5D6081AE9E28900E3B3BD /* Feed.swift */; };
 		A2A5D60C1AEA2E3D00E3B3BD /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A5D60B1AEA2E3D00E3B3BD /* Utils.swift */; };
+		A2B1138A1B3403590067CCF5 /* LoginView_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2B113891B3403590067CCF5 /* LoginView_iPad.xib */; };
+		A2B1D6351B33B91700DAF961 /* LoginView_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2B1D6341B33B91700DAF961 /* LoginView_iPhone.xib */; };
+		A2E499311B32C372009539B0 /* placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A2E499301B32C372009539B0 /* placeholder@2x.png */; };
+		A2E499331B32C441009539B0 /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E499321B32C441009539B0 /* Users.swift */; };
+		A2E499361B32C72B009539B0 /* UserDataAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E499351B32C72B009539B0 /* UserDataAccess.swift */; };
+		A2E499391B32C9A7009539B0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E499381B32C9A7009539B0 /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,7 +67,6 @@
 /* Begin PBXFileReference section */
 		62A0219673046F6226F9C4CF /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		A2034F741B1ECA40004CD2B9 /* Live_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Live_iPad.xib; sourceTree = "<group>"; };
-		A2034F7C1B1ED5DF004CD2B9 /* SplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SplitViewController.swift; path = ../../../../../../../SplitViewController.swift; sourceTree = "<group>"; };
 		A2034F7E1B1EF9D5004CD2B9 /* FeedMeida_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedMeida_iPad.xib; sourceTree = "<group>"; };
 		A2491AEE1AEA4B1600595433 /* BackgroundDownload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundDownload.swift; sourceTree = "<group>"; };
 		A2491AF21AEA4D3D00595433 /* Objective-CBridgeHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Objective-CBridgeHeader.h"; sourceTree = "<group>"; };
@@ -74,7 +77,6 @@
 		A2725CD41AEF60B10056D95B /* Media+CoreData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Media+CoreData.swift"; sourceTree = "<group>"; };
 		A2725CD71AEF773F0056D95B /* LiveCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveCollectionViewCell.swift; sourceTree = "<group>"; };
 		A2725CDC1AEF77880056D95B /* LiveCollectionView_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LiveCollectionView_iPhone.xib; sourceTree = "<group>"; };
-		A2725CDE1AEF93350056D95B /* placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "placeholder@2x.png"; path = "../../../../../../Desktop/FoxSportsClips/Fox Play Clips/Resource/Images/placeholder@2x.png"; sourceTree = "<group>"; };
 		A288DD851B0AF6FA00256E56 /* HTMLNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTMLNode.swift; sourceTree = "<group>"; };
 		A288DD861B0AF6FA00256E56 /* HTMLParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTMLParser.swift; sourceTree = "<group>"; };
 		A288DD871B0AF6FA00256E56 /* Swift-HTML-Parser-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Swift-HTML-Parser-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -111,6 +113,12 @@
 		A2A5D5FF1AE7860200E3B3BD /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		A2A5D6081AE9E28900E3B3BD /* Feed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
 		A2A5D60B1AEA2E3D00E3B3BD /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		A2B113891B3403590067CCF5 /* LoginView_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginView_iPad.xib; path = LiveAndFeeds/View/LoginView/iPad/LoginView_iPad.xib; sourceTree = SOURCE_ROOT; };
+		A2B1D6341B33B91700DAF961 /* LoginView_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginView_iPhone.xib; path = LiveAndFeeds/View/LoginView/iPhone/LoginView_iPhone.xib; sourceTree = SOURCE_ROOT; };
+		A2E499301B32C372009539B0 /* placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "placeholder@2x.png"; sourceTree = "<group>"; };
+		A2E499321B32C441009539B0 /* Users.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
+		A2E499351B32C72B009539B0 /* UserDataAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserDataAccess.swift; path = LiveAndFeeds/Models/CoreDataAccess/UserAccess/UserDataAccess.swift; sourceTree = SOURCE_ROOT; };
+		A2E499381B32C9A7009539B0 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = LiveAndFeeds/ViewController/LoginViewController/LoginViewController.swift; sourceTree = SOURCE_ROOT; };
 		A65B00C131AC6D3C20943597 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCE3F1C6704D51983A7E15C8 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -138,7 +146,6 @@
 		A2034F761B1ECE3A004CD2B9 /* SplitViewController */ = {
 			isa = PBXGroup;
 			children = (
-				A2034F7C1B1ED5DF004CD2B9 /* SplitViewController.swift */,
 			);
 			path = SplitViewController;
 			sourceTree = "<group>";
@@ -169,6 +176,7 @@
 		A2725CD01AEF401E0056D95B /* CoreDataAccess */ = {
 			isa = PBXGroup;
 			children = (
+				A2E499341B32C715009539B0 /* UserAccess */,
 				A2725CD11AEF401E0056D95B /* MediaAccess */,
 			);
 			path = CoreDataAccess;
@@ -327,7 +335,7 @@
 		A2A5D5BF1AE782BC00E3B3BD /* LiveAndFeeds */ = {
 			isa = PBXGroup;
 			children = (
-				A2725CDE1AEF93350056D95B /* placeholder@2x.png */,
+				A2E499301B32C372009539B0 /* placeholder@2x.png */,
 				A2A5D5EC1AE7860200E3B3BD /* View */,
 				A2A5D5F91AE7860200E3B3BD /* ViewController */,
 				A2A5D5E71AE7836100E3B3BD /* Models */,
@@ -383,6 +391,7 @@
 		A2A5D5E81AE7836100E3B3BD /* CoredataEntities */ = {
 			isa = PBXGroup;
 			children = (
+				A2E499321B32C441009539B0 /* Users.swift */,
 				A2A3F4211AF9C03800C8866D /* Media.swift */,
 				A2725CCE1AEF3F9A0056D95B /* Content.swift */,
 				A2725CCC1AEF3F9A0056D95B /* Categories.swift */,
@@ -403,6 +412,7 @@
 		A2A5D5EC1AE7860200E3B3BD /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A2E4993A1B32CB28009539B0 /* LoginView */,
 				A2034F791B1ECE61004CD2B9 /* SplitViewController */,
 				A29988DC1B09D53A00E67A87 /* VideoView */,
 				A2A3F41C1AF9BC4700C8866D /* FeedMediaViewController */,
@@ -490,6 +500,7 @@
 		A2A5D5F91AE7860200E3B3BD /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				A2E499371B32C98F009539B0 /* LoginViewController */,
 				A2034F761B1ECE3A004CD2B9 /* SplitViewController */,
 				A29988D91B09D47C00E67A87 /* VideoViewController */,
 				A2A3F4191AF9BBFB00C8866D /* FeedMediaController */,
@@ -533,6 +544,50 @@
 				A2491AEE1AEA4B1600595433 /* BackgroundDownload.swift */,
 			);
 			path = Utility;
+			sourceTree = "<group>";
+		};
+		A2E499341B32C715009539B0 /* UserAccess */ = {
+			isa = PBXGroup;
+			children = (
+				A2E499351B32C72B009539B0 /* UserDataAccess.swift */,
+			);
+			name = UserAccess;
+			path = "../../../../../../../../../../users/KrishanS/Documents/Live & Feed/iOS/Live-Feed/LiveAndFeeds/LiveAndFeeds/Models/CoreDataAccess/UserAccess";
+			sourceTree = "<group>";
+		};
+		A2E499371B32C98F009539B0 /* LoginViewController */ = {
+			isa = PBXGroup;
+			children = (
+				A2E499381B32C9A7009539B0 /* LoginViewController.swift */,
+			);
+			name = LoginViewController;
+			path = "../../../../../../../../../users/KrishanS/Documents/Live & Feed/iOS/Live-Feed/LiveAndFeeds/LiveAndFeeds/ViewController/LoginViewController";
+			sourceTree = "<group>";
+		};
+		A2E4993A1B32CB28009539B0 /* LoginView */ = {
+			isa = PBXGroup;
+			children = (
+				A2E4993B1B32CB28009539B0 /* iPad */,
+				A2E4993C1B32CB28009539B0 /* iPhone */,
+			);
+			name = LoginView;
+			path = "../../../../../../../../../users/KrishanS/Documents/Live & Feed/iOS/Live-Feed/LiveAndFeeds/LiveAndFeeds/View/LoginView";
+			sourceTree = "<group>";
+		};
+		A2E4993B1B32CB28009539B0 /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+				A2B113891B3403590067CCF5 /* LoginView_iPad.xib */,
+			);
+			path = iPad;
+			sourceTree = "<group>";
+		};
+		A2E4993C1B32CB28009539B0 /* iPhone */ = {
+			isa = PBXGroup;
+			children = (
+				A2B1D6341B33B91700DAF961 /* LoginView_iPhone.xib */,
+			);
+			path = iPhone;
 			sourceTree = "<group>";
 		};
 		A5D4834EB43C2E2597B30DF2 /* Pods */ = {
@@ -637,15 +692,17 @@
 			files = (
 				A29DC1791B280B0100C9B85E /* Video_iPad.xib in Resources */,
 				A2034F7F1B1EF9D5004CD2B9 /* FeedMeida_iPad.xib in Resources */,
+				A2B1138A1B3403590067CCF5 /* LoginView_iPad.xib in Resources */,
 				A2A5D5CB1AE782BC00E3B3BD /* Main.storyboard in Resources */,
 				A2A3F4201AF9BC5600C8866D /* FeedMeida_iPhone.xib in Resources */,
 				A29988E01B09D54E00E67A87 /* Video_iPhone.xib in Resources */,
 				A2034F751B1ECA40004CD2B9 /* Live_iPad.xib in Resources */,
 				A2A5D5D01AE782BC00E3B3BD /* LaunchScreen.xib in Resources */,
-				A2725CDF1AEF93350056D95B /* placeholder@2x.png in Resources */,
+				A2E499311B32C372009539B0 /* placeholder@2x.png in Resources */,
 				A2A5D6001AE7860200E3B3BD /* FeedList_iPhone.xib in Resources */,
 				A2A5D5CD1AE782BC00E3B3BD /* Images.xcassets in Resources */,
 				A2A5D6021AE7860200E3B3BD /* SplashView_iPhone.xib in Resources */,
+				A2B1D6351B33B91700DAF961 /* LoginView_iPhone.xib in Resources */,
 				A2A5D6011AE7860200E3B3BD /* Live_iPhone.xib in Resources */,
 				A2725CDD1AEF77880056D95B /* LiveCollectionView_iPhone.xib in Resources */,
 			);
@@ -698,6 +755,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2E499391B32C9A7009539B0 /* LoginViewController.swift in Sources */,
 				A2A3F4181AF9BADF00C8866D /* ParentViewController.swift in Sources */,
 				A2A5D5C81AE782BC00E3B3BD /* ViewController.swift in Sources */,
 				A2A5D6031AE7860200E3B3BD /* FeedListViewController.swift in Sources */,
@@ -708,9 +766,10 @@
 				A2725CD51AEF60B10056D95B /* Media+CoreData.swift in Sources */,
 				A288DD931B0B046F00256E56 /* TFHppleElement.m in Sources */,
 				A288DD881B0AF6FA00256E56 /* HTMLNode.swift in Sources */,
-				A2034F7D1B1ED5DF004CD2B9 /* SplitViewController.swift in Sources */,
 				A288DD941B0B046F00256E56 /* XPathQuery.m in Sources */,
 				A288DD921B0B046F00256E56 /* TFHpple.m in Sources */,
+				A2E499361B32C72B009539B0 /* UserDataAccess.swift in Sources */,
+				A2E499331B32C441009539B0 /* Users.swift in Sources */,
 				A2A5D6041AE7860200E3B3BD /* LiveViewController.swift in Sources */,
 				A2725CCF1AEF3F9A0056D95B /* Content.swift in Sources */,
 				A2725CC91AEF26090056D95B /* Constants.swift in Sources */,
