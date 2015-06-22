@@ -69,7 +69,7 @@ class VideoViewController: UIViewController  {
         moviePlayer = MPMoviePlayerController(contentURL: videoUrl)
         moviePlayer.fullscreen = true
         moviePlayer.controlStyle = MPMovieControlStyle.Fullscreen
-        moviePlayer.scalingMode = MPMovieScalingMode.AspectFill
+        moviePlayer.scalingMode = MPMovieScalingMode.AspectFit
         moviePlayer.prepareToPlay()
         moviePlayer.play()
         

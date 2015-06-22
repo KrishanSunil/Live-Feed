@@ -11,6 +11,7 @@
 		A2034F751B1ECA40004CD2B9 /* Live_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2034F741B1ECA40004CD2B9 /* Live_iPad.xib */; };
 		A2034F7F1B1EF9D5004CD2B9 /* FeedMeida_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2034F7E1B1EF9D5004CD2B9 /* FeedMeida_iPad.xib */; };
 		A2491AEF1AEA4B1600595433 /* BackgroundDownload.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2491AEE1AEA4B1600595433 /* BackgroundDownload.swift */; };
+		A253F2F21B37D09600AD6A40 /* FeedMediaAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D04CC51B37C32300D80C2D /* FeedMediaAccess.swift */; };
 		A2725CC91AEF26090056D95B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2725CC81AEF26090056D95B /* Constants.swift */; };
 		A2725CCD1AEF3F9A0056D95B /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2725CCC1AEF3F9A0056D95B /* Categories.swift */; };
 		A2725CCF1AEF3F9A0056D95B /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2725CCE1AEF3F9A0056D95B /* Content.swift */; };
@@ -115,6 +116,7 @@
 		A2A5D60B1AEA2E3D00E3B3BD /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		A2B113891B3403590067CCF5 /* LoginView_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginView_iPad.xib; path = LiveAndFeeds/View/LoginView/iPad/LoginView_iPad.xib; sourceTree = SOURCE_ROOT; };
 		A2B1D6341B33B91700DAF961 /* LoginView_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginView_iPhone.xib; path = LiveAndFeeds/View/LoginView/iPhone/LoginView_iPhone.xib; sourceTree = SOURCE_ROOT; };
+		A2D04CC51B37C32300D80C2D /* FeedMediaAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedMediaAccess.swift; path = LiveAndFeeds/Models/CoreDataAccess/FeedMediaAccess/FeedMediaAccess.swift; sourceTree = SOURCE_ROOT; };
 		A2E499301B32C372009539B0 /* placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "placeholder@2x.png"; sourceTree = "<group>"; };
 		A2E499321B32C441009539B0 /* Users.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
 		A2E499351B32C72B009539B0 /* UserDataAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserDataAccess.swift; path = LiveAndFeeds/Models/CoreDataAccess/UserAccess/UserDataAccess.swift; sourceTree = SOURCE_ROOT; };
@@ -176,6 +178,7 @@
 		A2725CD01AEF401E0056D95B /* CoreDataAccess */ = {
 			isa = PBXGroup;
 			children = (
+				A2D04CC41B37C30F00D80C2D /* FeedMediaAccess */,
 				A2E499341B32C715009539B0 /* UserAccess */,
 				A2725CD11AEF401E0056D95B /* MediaAccess */,
 			);
@@ -546,6 +549,15 @@
 			path = Utility;
 			sourceTree = "<group>";
 		};
+		A2D04CC41B37C30F00D80C2D /* FeedMediaAccess */ = {
+			isa = PBXGroup;
+			children = (
+				A2D04CC51B37C32300D80C2D /* FeedMediaAccess.swift */,
+			);
+			name = FeedMediaAccess;
+			path = "../../../../../../../../../../users/KrishanS/Documents/Live & Feed/iOS/Live-Feed/LiveAndFeeds/LiveAndFeeds/Models/CoreDataAccess/FeedMediaAccess";
+			sourceTree = "<group>";
+		};
 		A2E499341B32C715009539B0 /* UserAccess */ = {
 			isa = PBXGroup;
 			children = (
@@ -755,6 +767,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A253F2F21B37D09600AD6A40 /* FeedMediaAccess.swift in Sources */,
 				A2E499391B32C9A7009539B0 /* LoginViewController.swift in Sources */,
 				A2A3F4181AF9BADF00C8866D /* ParentViewController.swift in Sources */,
 				A2A5D5C81AE782BC00E3B3BD /* ViewController.swift in Sources */,

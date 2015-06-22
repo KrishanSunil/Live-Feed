@@ -17,12 +17,12 @@ class SplashViewController: ParentViewController,NSXMLParserDelegate {
     
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    var parser = NSXMLParser()
-    var feeds = [NSManagedObject]()
-    var element = NSString()
+//    var parser = NSXMLParser()
+//    var feeds = [NSManagedObject]()
+//    var element = NSString()
     var utils = Utils()
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-    var xmlAttributeDictionary = NSMutableDictionary()
+//    var xmlAttributeDictionary = NSMutableDictionary()
      let constant = Constants()
     
     override func viewDidLoad() {
@@ -76,74 +76,74 @@ class SplashViewController: ParentViewController,NSXMLParserDelegate {
 
     
     // MARK: - Call XML Url
+//    
+//    func beginParsingXml(){
+//        feeds = []
+//        let url = NSURL(string: constant.xmlServerUrl)
+//        parser = NSXMLParser(contentsOfURL: url)!
+//        parser.delegate = self
+//        parser.parse()
+//    }
+//    
+//    
+//    // MARK: - Parser Delegate
+//    
+//    
+//    func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [NSObject : AnyObject]) {
+//        element = elementName;
+//        println("Element Name \(element)")
+//        
+//        if((elementName as NSString).isEqualToString("Feed")||(elementName as NSString).isEqualToString("User")){
+//
+//            xmlAttributeDictionary.removeAllObjects()
+//            var attributes:NSDictionary = attributeDict as NSDictionary
+//            xmlAttributeDictionary = attributes.mutableCopy() as! NSMutableDictionary
+//            
+//            println ("\(xmlAttributeDictionary)")
+//            println("\(attributeDict)")
+//            
+//        }
+//    }
+//    
+//    func parser(parser: NSXMLParser, foundCharacters string: String?)
+//    {
+//        
+//        println("Element Name **** \(element)")
+//        if(element as NSString).isEqualToString("Feed"){
+//            
+//            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+//            
+//            let managedObjectContext = appDelegate.managedObjectContext!
+//            
+//            var  feedEntityDescription = NSEntityDescription.entityForName("Feed", inManagedObjectContext: managedObjectContext)
+//            
+//            var feed = Feed(entity: feedEntityDescription!, insertIntoManagedObjectContext: managedObjectContext)
+//            
+//            feed.name = xmlAttributeDictionary["name"]! as! String
+//            feed.airingCategory = xmlAttributeDictionary["airingCategory"]! as! String
+//            feed.urlValue = string!
+//            
+//            println("Url is \(string)")
+//            
+//            var error: NSError?
+//            
+//            if !managedObjectContext.save(&error){
+//                println("could not save \(error), \(error?.userInfo)")
+//            }
+//            
+//           return
+//            
+//        }
+//        
+//        if (element as NSString).isEqualToString("User"){
+//            
+//            var userDataAccess = UserDataAccess()
+//            userDataAccess.insertUser(xmlAttributeDictionary["userName"] as! NSString, password: xmlAttributeDictionary["password"] as! NSString)
+//            
+//        }
+//    }
     
-    func beginParsingXml(){
-        feeds = []
-        let url = NSURL(string: constant.xmlServerUrl)
-        parser = NSXMLParser(contentsOfURL: url)!
-        parser.delegate = self
-        parser.parse()
-    }
-    
-    
-    // MARK: - Parser Delegate
-    
-    
-    func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [NSObject : AnyObject]) {
-        element = elementName;
-        println("Element Name \(element)")
-        
-        if((elementName as NSString).isEqualToString("Feed")||(elementName as NSString).isEqualToString("User")){
-
-            xmlAttributeDictionary.removeAllObjects()
-            var attributes:NSDictionary = attributeDict as NSDictionary
-            xmlAttributeDictionary = attributes.mutableCopy() as! NSMutableDictionary
-            
-            println ("\(xmlAttributeDictionary)")
-            println("\(attributeDict)")
-            
-        }
-    }
-    
-    func parser(parser: NSXMLParser, foundCharacters string: String?)
-    {
-        
-        println("Element Name **** \(element)")
-        if(element as NSString).isEqualToString("Feed"){
-            
-            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-            
-            let managedObjectContext = appDelegate.managedObjectContext!
-            
-            var  feedEntityDescription = NSEntityDescription.entityForName("Feed", inManagedObjectContext: managedObjectContext)
-            
-            var feed = Feed(entity: feedEntityDescription!, insertIntoManagedObjectContext: managedObjectContext)
-            
-            feed.name = xmlAttributeDictionary["name"]! as! String
-            feed.airingCategory = xmlAttributeDictionary["airingCategory"]! as! String
-            feed.urlValue = string!
-            
-            println("Url is \(string)")
-            
-            var error: NSError?
-            
-            if !managedObjectContext.save(&error){
-                println("could not save \(error), \(error?.userInfo)")
-            }
-            
-           return
-            
-        }
-        
-        if (element as NSString).isEqualToString("User"){
-            
-            var userDataAccess = UserDataAccess()
-            userDataAccess.insertUser(xmlAttributeDictionary["userName"] as! NSString, password: xmlAttributeDictionary["password"] as! NSString)
-            
-        }
-    }
-    
-    func parser(parser: NSXMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?)
+    override func parser(parser: NSXMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?)
     {
         
         println("Element Name  End \(element)")
