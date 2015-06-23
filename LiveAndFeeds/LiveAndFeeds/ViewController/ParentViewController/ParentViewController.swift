@@ -25,6 +25,7 @@ class ParentViewController: UIViewController,NSXMLParserDelegate {
         super.viewDidLoad()
 
         self.edgesForExtendedLayout = UIRectEdge.None
+        self.extendedLayoutIncludesOpaqueBars  = false
     }
 
     override func didReceiveMemoryWarning() {
@@ -263,6 +264,11 @@ class ParentViewController: UIViewController,NSXMLParserDelegate {
             userDataAccess.insertUser(xmlAttributeDictionary["userName"] as! NSString, password: xmlAttributeDictionary["password"] as! NSString)
             
         }
+    }
+    
+
+   override func  prefersStatusBarHidden() -> Bool {
+        return true
     }
     
     func parser(parser: NSXMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?)

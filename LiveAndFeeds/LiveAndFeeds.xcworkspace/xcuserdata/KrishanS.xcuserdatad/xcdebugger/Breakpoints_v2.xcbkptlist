@@ -409,38 +409,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LiveAndFeeds/ViewController/LoginViewController/LoginViewController.swift"
-            timestampString = "456654302.200539"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
-            landmarkName = "loginButtonClicked(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "LiveAndFeeds/Models/CoreDataAccess/UserAccess/UserDataAccess.swift"
-            timestampString = "456654343.723093"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "16"
-            endingLineNumber = "16"
-            landmarkName = "isValidUser(_:password:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "LiveAndFeeds/Models/CoreDataAccess/UserAccess/UserDataAccess.swift"
             timestampString = "456654418.781705"
             startingColumnNumber = "9223372036854775807"
@@ -458,11 +426,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LiveAndFeeds/ViewController/ParentViewController/ParentViewController.swift"
-            timestampString = "456723401.846537"
+            timestampString = "456735157.357813"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
             landmarkName = "processSmilFile(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -496,6 +464,38 @@
             startingLineNumber = "234"
             endingLineNumber = "234"
             landmarkName = "parser(_:didEndElement:namespaceURI:qualifiedName:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LiveAndFeeds/ViewController/ParentViewController/ParentViewController.swift"
+            timestampString = "456740578.215884"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "271"
+            endingLineNumber = "271"
+            landmarkName = "prefersStatusBarHidden()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LiveAndFeeds/Models/Utility/BackgroundDownload.swift"
+            timestampString = "456742390.629378"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "ProcessSmilFileForVOD(_:success:failure:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

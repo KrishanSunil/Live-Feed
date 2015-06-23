@@ -47,8 +47,10 @@
                 <constraint firstAttribute="centerY" secondItem="vP1-ZO-Cid" secondAttribute="centerY" constant="0.5" id="dnD-u2-pLF"/>
                 <constraint firstAttribute="centerX" secondItem="vP1-ZO-Cid" secondAttribute="centerX" constant="-0.5" id="xjR-3n-OgS"/>
             </constraints>
+            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
             <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
+            <point key="canvasLocation" x="324" y="358"/>
         </view>
     </objects>
 </document>
