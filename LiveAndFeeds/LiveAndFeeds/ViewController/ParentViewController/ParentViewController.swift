@@ -100,8 +100,8 @@ class ParentViewController: UIViewController,NSXMLParserDelegate {
                         });
                         return
                     }
-                    
                     self.navigationController?.pushViewController(videoViewController, animated: true);
+//                    self.navigationController?.presentViewController(videoViewController, animated: true);
                    
 
                 }

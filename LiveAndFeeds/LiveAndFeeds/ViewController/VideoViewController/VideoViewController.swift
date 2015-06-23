@@ -10,7 +10,7 @@ import UIKit
 import MediaPlayer
 
 
-class VideoViewController: ParentViewController  {
+class VideoViewController: UIViewController  {
     
     @IBAction func buttonDoneClicked(sender: AnyObject) {
         
