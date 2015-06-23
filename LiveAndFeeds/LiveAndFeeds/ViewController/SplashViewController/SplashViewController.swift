@@ -17,12 +17,12 @@ class SplashViewController: ParentViewController,NSXMLParserDelegate {
     
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    var parser = NSXMLParser()
-    var feeds = [NSManagedObject]()
-    var element = NSString()
+//    var parser = NSXMLParser()
+//    var feeds = [NSManagedObject]()
+//    var element = NSString()
     var utils = Utils()
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-    var xmlAttributeDictionary = NSDictionary()
+//    var xmlAttributeDictionary = NSMutableDictionary()
      let constant = Constants()
     
     override func viewDidLoad() {
@@ -44,10 +44,10 @@ class SplashViewController: ParentViewController,NSXMLParserDelegate {
                 case .Default:
                    exit(0)
                 case .Destructive:
-                    self.println("Destructive")
+                    println("Destructive")
                     
                 case .Cancel:
-               self.println("Cancel")
+                    println("Cancel")
                     
                     
                 }
@@ -58,7 +58,8 @@ class SplashViewController: ParentViewController,NSXMLParserDelegate {
         }
         
         dispatch_async(utils.GlobalUserInitiatedQueue){
-            self.DownloadLiveData()
+//            self.DownloadLiveData()
+            self.beginParsingXml()
         }
 
     }
@@ -75,76 +76,91 @@ class SplashViewController: ParentViewController,NSXMLParserDelegate {
 
     
     // MARK: - Call XML Url
+//    
+//    func beginParsingXml(){
+//        feeds = []
+//        let url = NSURL(string: constant.xmlServerUrl)
+//        parser = NSXMLParser(contentsOfURL: url)!
+//        parser.delegate = self
+//        parser.parse()
+//    }
+//    
+//    
+//    // MARK: - Parser Delegate
+//    
+//    
+//    func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [NSObject : AnyObject]) {
+//        element = elementName;
+//        println("Element Name \(element)")
+//        
+//        if((elementName as NSString).isEqualToString("Feed")||(elementName as NSString).isEqualToString("User")){
+//
+//            xmlAttributeDictionary.removeAllObjects()
+//            var attributes:NSDictionary = attributeDict as NSDictionary
+//            xmlAttributeDictionary = attributes.mutableCopy() as! NSMutableDictionary
+//            
+//            println ("\(xmlAttributeDictionary)")
+//            println("\(attributeDict)")
+//            
+//        }
+//    }
+//    
+//    func parser(parser: NSXMLParser, foundCharacters string: String?)
+//    {
+//        
+//        println("Element Name **** \(element)")
+//        if(element as NSString).isEqualToString("Feed"){
+//            
+//            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+//            
+//            let managedObjectContext = appDelegate.managedObjectContext!
+//            
+//            var  feedEntityDescription = NSEntityDescription.entityForName("Feed", inManagedObjectContext: managedObjectContext)
+//            
+//            var feed = Feed(entity: feedEntityDescription!, insertIntoManagedObjectContext: managedObjectContext)
+//            
+//            feed.name = xmlAttributeDictionary["name"]! as! String
+//            feed.airingCategory = xmlAttributeDictionary["airingCategory"]! as! String
+//            feed.urlValue = string!
+//            
+//            println("Url is \(string)")
+//            
+//            var error: NSError?
+//            
+//            if !managedObjectContext.save(&error){
+//                println("could not save \(error), \(error?.userInfo)")
+//            }
+//            
+//           return
+//            
+//        }
+//        
+//        if (element as NSString).isEqualToString("User"){
+//            
+//            var userDataAccess = UserDataAccess()
+//            userDataAccess.insertUser(xmlAttributeDictionary["userName"] as! NSString, password: xmlAttributeDictionary["password"] as! NSString)
+//            
+//        }
+//    }
     
-    func beginParsingXml(){
-        feeds = []
-        let url = NSURL(string: constant.xmlServerUrl)
-        parser = NSXMLParser(contentsOfURL: url)!
-        parser.delegate = self
-        parser.parse()
-    }
-    
-    
-    // MARK: - Parser Delegate
-    
-    
-    func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [NSObject : AnyObject]) {
-        element = elementName;
+    override func parser(parser: NSXMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?)
+    {
         
-        if(elementName as NSString).isEqualToString("Feed"){
-            
-            xmlAttributeDictionary = attributeDict
-            
-            println ("\(xmlAttributeDictionary)")
-            println("\(attributeDict)")
-            
-        }
-    }
-    
-    func parser(parser: NSXMLParser, foundCharacters string: String?)
-    {
-        if(element as NSString).isEqualToString("Feed"){
-            
-            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-            
-            let managedObjectContext = appDelegate.managedObjectContext!
-            
-            var  feedEntityDescription = NSEntityDescription.entityForName("Feed", inManagedObjectContext: managedObjectContext)
-            
-            var feed = Feed(entity: feedEntityDescription!, insertIntoManagedObjectContext: managedObjectContext)
-            
-            feed.name = xmlAttributeDictionary["name"]! as! String
-            feed.airingCategory = xmlAttributeDictionary["airingCategory"]! as! String
-            feed.urlValue = string!
-            
-            println("Url is \(string)")
-            
-            var error: NSError?
-            
-            if !managedObjectContext.save(&error){
-                println("could not save \(error), \(error?.userInfo)")
-            }
-            
-            
-            
-        }
-    }
-    
-    func parser(parser: NSXMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?)
-    {
-        println("Element name \(elementName)")
-        println("Qualified name \(qName)")
+        println("Element Name  End \(element)")
         element = "";
         
         if ((elementName as NSString).isEqualToString("feedList")){
             
             dispatch_async(utils.GlobalMainQueue){
                 
-                if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
-                   self.setupPhoneScreens()
-                } else {
-                    self.setupPadScreen()
-                }
+//                if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
+//                   self.setupPhoneScreens()
+//                } else {
+//                    self.setupPadScreen()
+//                }
+                
+                let loginViewController = LoginViewController(nibName :self.getNibName("LoginView"), bundle:nil)
+                    self.appDelegate.window?.rootViewController = loginViewController;
                 
                 
                 self.activityIndicator.stopAnimating()
@@ -156,67 +172,7 @@ class SplashViewController: ParentViewController,NSXMLParserDelegate {
     }
     
     
-    // SetUp Tab Bar Controller For Phone
-    func setupPhoneScreens() {
-        
-        let tabBarController = UITabBarController();
        
-        //Live_iPhone
-        let liveViewController = LiveViewController(nibName : self.getNibName("Live"), bundle: nil)
-        let feedListViewController = FeedListViewController(nibName : "FeedList_iPhone" , bundle : nil)
-        
-        var liveNavigationController = UINavigationController(rootViewController: liveViewController);
-        var feedNavigationController = UINavigationController(rootViewController: feedListViewController)
 
-        let viewControllers = [liveNavigationController,feedNavigationController]
-        tabBarController.viewControllers = viewControllers;
-
-
-        self.appDelegate.window?.rootViewController = tabBarController;
-        
-        liveNavigationController.tabBarItem = UITabBarItem(title: "Live", image: nil, selectedImage: nil)
-        feedNavigationController.tabBarItem = UITabBarItem(title: "Feeds", image: nil, selectedImage: nil)
-        
-    }
-    
-    func setupPadScreen() {
-        let tabBarController = UITabBarController();
-        //Live_iPhone
-        let liveViewController = LiveViewController(nibName : self.getNibName("Live"), bundle: nil)
-        let feedListViewController = FeedListViewController(nibName : "FeedList_iPhone" , bundle : nil)
-        let splitViewController = UISplitViewController()
-        
-        var liveNavigationController = UINavigationController(rootViewController: liveViewController);
-       
-        var feedMediaViewController = FeedMediaViewController(nibName: self.getNibName("FeedMeida"), bundle:nil)
-        
-        
-        
-        let splitViewControllers = [feedListViewController,feedMediaViewController]
-         splitViewController.viewControllers = splitViewControllers
-        let viewControllers = [liveNavigationController,splitViewController]
-       
-        tabBarController.viewControllers = viewControllers;
-
-        
-        self.appDelegate.window?.rootViewController = tabBarController;
-        
-        liveNavigationController.tabBarItem = UITabBarItem(title: "Live", image: nil, selectedImage: nil)
-        splitViewController.tabBarItem = UITabBarItem(title: "Feeds", image: nil, selectedImage: nil)
-        //                splitViewController.tabBarItem = UITabBarItem(title: "Feeds", image: nil, selectedImage: nil)
-        
-        
-
-    }
-    
-    override func println(object:Any){
-        
-        #if DEBUG
-        Swift.println(object)
-        #endif
-        
-        
-    }
-    
     
 }

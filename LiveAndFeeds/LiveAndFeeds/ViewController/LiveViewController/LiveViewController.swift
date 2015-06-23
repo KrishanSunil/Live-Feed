@@ -149,10 +149,10 @@ class LiveViewController: ParentViewController, NSFetchedResultsControllerDelega
                 case .Default:
                     exit(0)
                 case .Destructive:
-                    self.println("Destructive")
+                    println("Destructive")
                     
                 case .Cancel:
-               self.println("Cancel")
+                    println("Cancel")
                     
                     
                 }

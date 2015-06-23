@@ -7,13 +7,19 @@
 //
 
 import UIKit
+import CoreData
 
 
-class ParentViewController: UIViewController {
+class ParentViewController: UIViewController,NSXMLParserDelegate {
     
      let M3U = "M3U"
      let MPEG4 = "MPEG4"
     let ariringCategory = "Live"
+    
+    var parser = NSXMLParser()
+    var feeds = [NSManagedObject]()
+    var element = NSString()
+    var xmlAttributeDictionary = NSMutableDictionary()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,7 +55,7 @@ class ParentViewController: UIViewController {
                 videoViewController.hidesBottomBarWhenPushed = true
                 
                 if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
-                    self.tabBarController?.presentViewController(videoViewController, animated: true, completion: {
+                    self.splitViewController?.presentViewController(videoViewController, animated: true, completion: {
                         
                     });
                     return
@@ -88,7 +94,7 @@ class ParentViewController: UIViewController {
                     videoViewController.hidesBottomBarWhenPushed = true
                     
                     if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
-                        self.tabBarController?.presentViewController(videoViewController, animated: true, completion: {
+                        self.splitViewController?.presentViewController(videoViewController, animated: true, completion: {
                             
                         });
                         return
@@ -101,7 +107,7 @@ class ParentViewController: UIViewController {
                 
                 }, failure: { (error:NSError?) -> Void in
                     
-                    self.println("Failed to obtain url from feed")
+                    println("Failed to obtain url from feed")
             })
         }
         
@@ -133,7 +139,7 @@ class ParentViewController: UIViewController {
         var mediaAccess = MediaAccess()
         var constant = Constants()
         backgroundDownload.DownloadData(constant.liveFeedUrl, success: { (response: AnyObject!)->Void in
-       self.println("Success")
+       println("Success")
             
             var mediaArray = response["entries"]! as! NSMutableArray
             mediaAccess.feedName = mediaAccess.live
@@ -143,7 +149,7 @@ class ParentViewController: UIViewController {
             self.LiveMediaInsertSuccess()
             
             }, failure: { (error:NSError?)->Void in
-                self.println("Failure")
+                println("Failure")
         })
 
     }
@@ -152,13 +158,140 @@ class ParentViewController: UIViewController {
         println("Overwrite this function")
     }
     
-    func println(object:Any){
+//    func println(object:Any){
+//        
+//        #if DEBUG
+//            Swift.println(object)
+//        #endif
+//        
+//        
+//    }
+    
+    
+    // MARK: - Call XML Url
+    
+    func beginParsingXml(){
+        feeds = []
+        let constant = Constants()
+        let url = NSURL(string: constant.xmlServerUrl)
+        parser = NSXMLParser(contentsOfURL: url)!
+        parser.delegate = self
+        parser.parse()
+    }
+    
+    
+    // MARK: - Parser Delegate
+    
+    
+    func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [NSObject : AnyObject]) {
+        element = elementName;
+        println("Element Name \(element)")
         
-        #if DEBUG
-            Swift.println(object)
-        #endif
+        if((elementName as NSString).isEqualToString("Feed")||(elementName as NSString).isEqualToString("User")){
+            
+            xmlAttributeDictionary.removeAllObjects()
+            var attributes:NSDictionary = attributeDict as NSDictionary
+            xmlAttributeDictionary = attributes.mutableCopy() as! NSMutableDictionary
+            
+            println ("\(xmlAttributeDictionary)")
+            println("\(attributeDict)")
+            
+        }
+    }
+    
+    func parser(parser: NSXMLParser, foundCharacters string: String?)
+    {
         
+        println("Element Name **** \(element)")
+        if(element as NSString).isEqualToString("Feed"){
+            
+//            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+//            
+//            let managedObjectContext = appDelegate.managedObjectContext!
+//            
+//            var  feedEntityDescription = NSEntityDescription.entityForName("Feed", inManagedObjectContext: managedObjectContext)
+//            
+//            var feed = Feed(entity: feedEntityDescription!, insertIntoManagedObjectContext: managedObjectContext)
+//            
+//            feed.name = xmlAttributeDictionary["name"]! as! String
+//            feed.airingCategory = xmlAttributeDictionary["airingCategory"]! as! String
+//            feed.urlValue = string!
+//            
+//            println("Url is \(string)")
+//            
+//            var error: NSError?
+//            
+//            if !managedObjectContext.save(&error){
+//                println("could not save \(error), \(error?.userInfo)")
+//            }
+             var feedMediaAccess = FeedMediaAccess()
+            feedMediaAccess.deleteAllFeedEntries(xmlAttributeDictionary["name"] as! NSString )
+            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            
+            let managedObjectContext = appDelegate.managedObjectContext!
+            
+            var  feedEntityDescription = NSEntityDescription.entityForName("Feed", inManagedObjectContext: managedObjectContext)
+            
+            var feed = Feed(entity: feedEntityDescription!, insertIntoManagedObjectContext: managedObjectContext)
+             println("Url is \(string!)")
+            
+            feed.name = xmlAttributeDictionary["name"]! as! String
+            feed.airingCategory = xmlAttributeDictionary["airingCategory"]! as! String
+            feed.urlValue = string!
+            
+
+            
+            var error: NSError?
+            
+            if !managedObjectContext.save(&error){
+                println("could not save \(error), \(error?.userInfo)")
+            }
+
+            
+//            var urlString:NSString  = string!
+//            println("String Url is *************** \(urlString)")
+//            var feedMediaAccess = FeedMediaAccess()
+//            feedMediaAccess.insertIntoFeed(xmlAttributeDictionary, string: string!)
+            
+            return
+            
+        }
         
+        if (element as NSString).isEqualToString("User"){
+            
+            var userDataAccess = UserDataAccess()
+            userDataAccess.insertUser(xmlAttributeDictionary["userName"] as! NSString, password: xmlAttributeDictionary["password"] as! NSString)
+            
+        }
+    }
+    
+    func parser(parser: NSXMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?)
+    {
+        
+        println("Element Name  End \(element)")
+//        element = "";
+//        var utils = Utils()
+//        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+//        if ((elementName as NSString).isEqualToString("feedList")){
+//            
+//            dispatch_async(utils.GlobalMainQueue){
+//                
+//                //                if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
+//                //                   self.setupPhoneScreens()
+//                //                } else {
+//                //                    self.setupPadScreen()
+//                //                }
+//                
+//                let loginViewController = LoginViewController(nibName :self.getNibName("LoginView"), bundle:nil)
+////                self.appDelegate.window?.rootViewController = loginViewController;
+////                
+////                
+////                self.activityIndicator.stopAnimating()
+////                
+//                
+//            }
+//            
+//        }
     }
 
 }
